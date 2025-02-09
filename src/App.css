@@ -82,3 +82,32 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.container {
+  padding: 20px;
+}
+
+.molecule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.molecule-table th, .molecule-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.molecule-table th {
+  background-color: #343a40;
+  color: white;
+}
+
+.molecule-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.molecule-table tr:hover {
+  background-color: #ddd;
+}
