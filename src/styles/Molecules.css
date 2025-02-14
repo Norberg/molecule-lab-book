@@ -1,0 +1,19 @@
+.molecule-image {
+  width: 100px;
+  height: 100px;
+}
+
+.hovered-image-container {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.hovered-image {
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
