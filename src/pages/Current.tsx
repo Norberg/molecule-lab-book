@@ -1,7 +1,6 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList"; // Importera din nya komponent
-import { useEffect } from "react";
 
 interface ReactionHint {
   reactants: string[];
@@ -23,6 +22,7 @@ interface Molecule {
 interface LevelData {
   points: number;
   time: number;
+  victoryCondition: string[];
   hint: string;
   reactionHint: ReactionHint[];
   reactingElements: string[];
@@ -39,8 +39,6 @@ const fetchMolecules = async (): Promise<Molecule[]> => {
 };
 
 const Current = () => {
-  const queryClient = useQueryClient();
-
   const { data: levelData, error: levelError, isLoading: levelLoading } = useQuery<LevelData>({
     queryKey: ["currentLevel"],
     queryFn: fetchCurrentLevel,
@@ -61,12 +59,24 @@ const Current = () => {
     levelData.reactingElements.includes(molecule.formula)
   );
 
+  const victoryMolecules = moleculesData
+    .filter((molecule) =>  levelData.victoryCondition.includes(molecule.formula))
+    .map (molecule => {
+        molecule.property.Description = "Not discovered yet";
+        molecule.property.DescriptionAttribution = undefined;
+        return molecule;
+    }
+  );
+
   return (
     <div>
       <h2>Current Level</h2>
       <p>Points: {levelData.points}</p>
       <p>Time: {Math.floor(levelData.time)}</p>
       <p>Hint: {levelData.hint}</p>
+      <h2>Victory Condition</h2>
+      <MoleculesList molecules={victoryMolecules} />
+
 
       {levelData.reactionHint && levelData.reactionHint.length > 0 && (
         <div>
