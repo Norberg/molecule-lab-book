@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList"; // Importera din nya komponent
+import { useEffect } from "react";
 
 interface ReactionHint {
   reactants: string[];
@@ -38,9 +39,12 @@ const fetchMolecules = async (): Promise<Molecule[]> => {
 };
 
 const Current = () => {
+  const queryClient = useQueryClient();
+
   const { data: levelData, error: levelError, isLoading: levelLoading } = useQuery<LevelData>({
     queryKey: ["currentLevel"],
     queryFn: fetchCurrentLevel,
+    refetchInterval: 500, // Refetch every 0.5 seconds
   });
 
   const { data: moleculesData, error: moleculesError, isLoading: moleculesLoading } = useQuery<Molecule[]>({
@@ -53,18 +57,15 @@ const Current = () => {
   if (moleculesError) return <p>Error when fetching molecules.</p>;
   if (!levelData || !moleculesData) return <p>No data available</p>;
 
-  const reactingMolecules = moleculesData.filter((molecule) =>{
-    //Debug logs
-    console.log("levelData.reactingElements: ", levelData.reactingElements);
-    console.log("molecule.formula: ", molecule.formula);
-    return levelData.reactingElements.includes(molecule.formula);}
+  const reactingMolecules = moleculesData.filter((molecule) =>
+    levelData.reactingElements.includes(molecule.formula)
   );
 
   return (
     <div>
       <h2>Current Level</h2>
       <p>Points: {levelData.points}</p>
-      <p>Time: {levelData.time}</p>
+      <p>Time: {Math.floor(levelData.time)}</p>
       <p>Hint: {levelData.hint}</p>
 
       {levelData.reactionHint && levelData.reactionHint.length > 0 && (
