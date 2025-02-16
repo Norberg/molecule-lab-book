@@ -1,0 +1,22 @@
+.atom-image {
+  width: 96px;
+  height: 96px;
+}
+
+.atom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.atom-table th, .atom-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.atom-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  color: black;
+}
