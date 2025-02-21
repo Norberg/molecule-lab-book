@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./MoleculesList.css";
 
 interface Molecule {
   formula: string;
@@ -12,20 +13,25 @@ interface Molecule {
 
 interface MoleculesListProps {
   molecules: Molecule[];
+  expandedImage?: boolean;
 }
 
-const MoleculesList: React.FC<MoleculesListProps> = ({ molecules }) => {
+const MoleculesList: React.FC<MoleculesListProps> = ({ molecules, expandedImage = false }) => {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [hoveredImagePosition, setHoveredImagePosition] = useState<{ top: number; left: number } | null>(null);
 
   const handleMouseOver = (imageUrl: string, event: React.MouseEvent<HTMLImageElement>) => {
-    setHoveredImage(imageUrl);
-    setHoveredImagePosition({ top: event.clientY, left: event.clientX });
+    if (!expandedImage) {
+      setHoveredImage(imageUrl);
+      setHoveredImagePosition({ top: event.clientY, left: event.clientX });
+    }
   };
 
   const handleMouseOut = () => {
-    setHoveredImage(null);
-    setHoveredImagePosition(null);
+    if (!expandedImage) {
+      setHoveredImage(null);
+      setHoveredImagePosition(null);
+    }
   };
 
   return (
@@ -41,7 +47,7 @@ const MoleculesList: React.FC<MoleculesListProps> = ({ molecules }) => {
       <table className="molecule-table">
         <thead>
           <tr>
-            <th>Image</th>
+            <th className="image-column">Image</th>
             <th>Formula</th>
             <th>Name</th>
             <th>Description</th>
@@ -50,13 +56,14 @@ const MoleculesList: React.FC<MoleculesListProps> = ({ molecules }) => {
         <tbody>
           {molecules.map((molecule, index) => (
             <tr key={index}>
-              <td>
-                <img
+              <td className="image-column">
+              <img
                   src={`http://localhost:8000/molecule/${molecule.formula}/skeletal`}
                   alt={`${molecule.formula} skeletal structure`}
                   className="molecule-image"
                   onMouseOver={(evt) => handleMouseOver(`http://localhost:8000/molecule/${molecule.formula}/skeletal`, evt)}
                   onMouseOut={handleMouseOut}
+                  style={expandedImage ? { width: "300px", height: "300px" } : {}}
                 />
               </td>
               <td>{molecule.formula}</td>

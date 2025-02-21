@@ -75,7 +75,7 @@ const Current = () => {
       <p>Time: {Math.floor(levelData.time)}</p>
       <p>Hint: {levelData.hint}</p>
       <h2>Victory Condition</h2>
-      <MoleculesList molecules={victoryMolecules} />
+      <MoleculesList molecules={victoryMolecules} expandedImage={true} />
 
 
       {levelData.reactionHint && levelData.reactionHint.length > 0 && (
@@ -95,7 +95,7 @@ const Current = () => {
       {reactingMolecules.length > 0 && (
         <div>
           <h3>Reacting Elements</h3>
-          <MoleculesList molecules={reactingMolecules} />
+          <MoleculesList molecules={reactingMolecules} expandedImage={true}/>
         </div>
       )}
     </div>
