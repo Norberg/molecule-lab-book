@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import MoleculesList from "../components/MoleculesList"; // Importera din nya komponent
+import MoleculesList from "../components/MoleculesList";
 
 interface ReactionHint {
   reactants: string[];
