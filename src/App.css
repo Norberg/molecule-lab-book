@@ -111,3 +111,18 @@ body {
 .molecule-table tr:hover {
   background-color: #ddd;
 }
+
+.current-container {
+  position: relative;
+}
+
+.reaction-hints-container {
+  float: right;
+  margin-left: 20px;
+}
+
+.current-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}

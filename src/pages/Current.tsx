@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList";
+import { useState } from "react";
 
 interface ReactionHint {
   reactants: string[];
@@ -50,6 +51,8 @@ const Current = () => {
     queryFn: fetchMolecules,
   });
 
+  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+
   if (levelLoading || moleculesLoading) return <p>Loading...</p>;
   if (levelError) return <p>Error when fetching current level.</p>;
   if (moleculesError) return <p>Error when fetching molecules.</p>;
@@ -60,13 +63,21 @@ const Current = () => {
   );
 
   const victoryMolecules = moleculesData
-    .filter((molecule) =>  levelData.victoryCondition.includes(molecule.formula))
-    .map (molecule => {
-        molecule.property.Description = "Not discovered yet";
-        molecule.property.DescriptionAttribution = undefined;
-        return molecule;
-    }
-  );
+    .filter((molecule) => levelData.victoryCondition.includes(molecule.formula))
+    .map(molecule => {
+      // Clone molecule object to avoid changing the original object
+      molecule = JSON.parse(JSON.stringify(molecule));
+      molecule.property.Description = "Not discovered yet";
+      molecule.property.DescriptionAttribution = undefined;
+      return molecule;
+    });
+
+  const toggleReveal = (index: number) => {
+    setRevealed((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   return (
     <div>
@@ -74,9 +85,9 @@ const Current = () => {
       <p>Points: {levelData.points}</p>
       <p>Time: {Math.floor(levelData.time)}</p>
       <p>Hint: {levelData.hint}</p>
+      
       <h2>Victory Condition</h2>
       <MoleculesList molecules={victoryMolecules} expandedImage={true} />
-
 
       {levelData.reactionHint && levelData.reactionHint.length > 0 && (
         <div>
@@ -84,8 +95,15 @@ const Current = () => {
           <ul>
             {levelData.reactionHint.map((item, index) => (
               <li key={index}>
-                Reactants: {item.reactants.join(" + ")} {"=>"} Products:{" "}
-                {item.products.join(" + ")}
+                <img
+                  src={`http://localhost:8000/reaction/image/${revealed[index] ? item.reactionPath : item.reactionHintPath}`}
+                  alt={`Reaction image for ${
+                    revealed[index] ? item.reactionPath : item.reactionHintPath
+                  }`}
+                />
+                <button onClick={() => toggleReveal(index)}>
+                  {revealed[index] ? "Hide Reaction Path" : "Reveal Reaction Path"}
+                </button>
               </li>
             ))}
           </ul>
@@ -95,7 +113,7 @@ const Current = () => {
       {reactingMolecules.length > 0 && (
         <div>
           <h3>Reacting Elements</h3>
-          <MoleculesList molecules={reactingMolecules} expandedImage={true}/>
+          <MoleculesList molecules={reactingMolecules} expandedImage={true} />
         </div>
       )}
     </div>
