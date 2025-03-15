@@ -68,10 +68,16 @@ const Current = () => {
   const victoryMolecules = moleculesData
     .filter((molecule) => levelData.victoryCondition.includes(molecule.formula))
     .map(molecule => {
+      // Spara den ursprungliga beskrivande texten om den finns
+      const originalDescription = molecule.property.Description || "";
+      // Kontrollera om någon reactionLog-produkter innehåller molekylens formel
+      const isDiscovered = levelData.reactionLog.some(
+        (log) => log.products.includes(molecule.formula)
+      );
       // Clone molecule object to avoid changing the original object
       molecule = JSON.parse(JSON.stringify(molecule));
-      molecule.property.Description = "Not discovered yet";
-      molecule.property.DescriptionAttribution = undefined;
+      molecule.property.Description = isDiscovered ? originalDescription : "Not discovered yet";
+      molecule.property.DescriptionAttribution = isDiscovered ? molecule.property.DescriptionAttribution : undefined;
       return molecule;
     });
 
