@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList";
 import { useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
 
 interface ReactionHint {
@@ -95,19 +96,36 @@ const Current = () => {
         <div className="reaction-hints-container">
           <h3>Reaction Hints</h3>
           <ul>
-            {levelData.reactionHint.map((item, index) => (
-              <li key={index}>
-                <img
-                  src={`http://localhost:8000/reaction/image/${revealed[index] ? item.reactionPath : item.reactionHintPath}`}
-                  alt={`Reaction image for ${
-                    revealed[index] ? item.reactionPath : item.reactionHintPath
-                  }`}
-                />
-                <button onClick={() => toggleReveal(index)}>
-                  {revealed[index] ? "Hide Reaction Path" : "Reveal Reaction Path"}
-                </button>
-              </li>
-            ))}
+            {levelData.reactionHint.map((item, index) => {
+              // Kontrollera om reactionHint:ens reactionPath finns i reactionLog
+              const isDiscovered = levelData.reactionLog.some(
+                (log) => log.reactionPath === item.reactionPath
+              );
+              // Om den är upptäckt, visas den alltid expanderad
+              const isRevealed = isDiscovered || revealed[index];
+
+              return (
+                <li key={index} className="reaction-hint-item">
+                  <img
+                    src={`http://localhost:8000/reaction/image/${
+                      isRevealed ? item.reactionPath : item.reactionHintPath
+                    }`}
+                    alt={`Reaction image for ${
+                      isRevealed ? item.reactionPath : item.reactionHintPath
+                    }`}
+                  />
+                  {isDiscovered ? (
+                    <div className="discovered-icon-wrapper">
+                      <FaCheckCircle className="discovered-icon" title="Discovered" />
+                    </div>
+                  ) : (
+                    <button onClick={() => toggleReveal(index)} className="reveal-button">
+                      {isRevealed ? "Hide Reaction Path" : "Reveal Reaction Path"}
+                    </button>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

@@ -43,3 +43,34 @@
 .reaction-log-container tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+.reaction-hint-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.discovered-icon-wrapper {
+  display: flex;
+  align-items: center;
+  /* Lägg gärna till extra styling, tex. en bakgrundsfärg eller rundning */
+}
+
+.discovered-icon {
+  color: green;
+  font-size: 1.5rem;
+}
+
+.reveal-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.reveal-button:hover {
+  background-color: #0056b3;
+}
