@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList";
 import { useState } from "react";
+import "../styles/Current.css";
 
 interface ReactionHint {
   reactants: string[];
@@ -26,6 +27,7 @@ interface LevelData {
   victoryCondition: string[];
   hint: string;
   reactionHint: ReactionHint[];
+  reactionLog: ReactionHint[];
   reactingElements: string[];
 }
 
@@ -80,7 +82,7 @@ const Current = () => {
   };
 
   return (
-    <div>
+    <div className="current-container">
       <h2>Current Level</h2>
       <p>Points: {levelData.points}</p>
       <p>Time: {Math.floor(levelData.time)}</p>
@@ -90,7 +92,7 @@ const Current = () => {
       <MoleculesList molecules={victoryMolecules} expandedImage={true} />
 
       {levelData.reactionHint && levelData.reactionHint.length > 0 && (
-        <div>
+        <div className="reaction-hints-container">
           <h3>Reaction Hints</h3>
           <ul>
             {levelData.reactionHint.map((item, index) => (
@@ -107,6 +109,38 @@ const Current = () => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {levelData.reactionLog && levelData.reactionLog.length > 0 && (
+        <div className="reaction-log-container">
+          <h3>Reaction Log</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Reaction Image</th>
+                <th>Reactants</th>
+                <th>Products</th>
+              </tr>
+            </thead>
+            <tbody>
+              {levelData.reactionLog
+                .slice()
+                .reverse()
+                .map((log, index) => (
+                  <tr key={index}>
+                    <td>
+                      <img
+                        src={`http://localhost:8000/reaction/image/${log.reactionPath}`}
+                        alt={`Reaction log image for ${log.reactionPath}`}
+                      />
+                    </td>
+                    <td>{log.reactants.join(" + ")}</td>
+                    <td>{log.products.join(" + ")}</td>
+                  </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 

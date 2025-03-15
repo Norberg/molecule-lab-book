@@ -93,7 +93,8 @@ body {
   margin-top: 20px;
 }
 
-.molecule-table th, .molecule-table td {
+.molecule-table th, 
+.molecule-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -110,19 +111,4 @@ body {
 
 .molecule-table tr:hover {
   background-color: #ddd;
-}
-
-.current-container {
-  position: relative;
-}
-
-.reaction-hints-container {
-  float: right;
-  margin-left: 20px;
-}
-
-.current-container::after {
-  content: "";
-  display: table;
-  clear: both;
 }

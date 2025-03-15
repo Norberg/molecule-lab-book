@@ -1,0 +1,45 @@
+.current-container {
+  padding: 20px;
+  position: relative;
+  overflow: auto;
+}
+
+/* Vi tar bort float så att layouten inte stör Victory Condition-tabellen */
+.reaction-hints-container {
+  margin-top: 20px;
+  /* Om du vill lista hints vertikalt utan att påverka andra element */
+}
+
+.reaction-hints-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.reaction-hints-container li {
+  margin-bottom: 10px;
+}
+
+.reaction-log-container {
+  margin-top: 20px;
+}
+
+.reaction-log-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reaction-log-container th,
+.reaction-log-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.reaction-log-container th {
+  background-color: #343a40;
+  color: white;
+}
+
+.reaction-log-container tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
