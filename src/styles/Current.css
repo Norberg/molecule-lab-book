@@ -4,14 +4,12 @@
   overflow: auto;
 }
 
-/* Vi tar bort float så att layouten inte stör Victory Condition-tabellen */
 .reaction-hints-container {
   margin-top: 20px;
-  /* Om du vill lista hints vertikalt utan att påverka andra element */
 }
 
 .reaction-hints-container ul {
-  list-style: none;
+ /* list-style: none; */
   padding-left: 0;
 }
 
@@ -46,15 +44,53 @@
 
 .reaction-hint-item {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.reaction-hint-item img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   margin-bottom: 10px;
+}
+
+.reaction-hint-description-wrapper {
+  width: 90%;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reaction-hint-description-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.reaction-hint-description-container {
+  margin-top: 10px; 
+  text-align: left;
+}
+
+.reaction-hint-description {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  text-align: left;
+  display: block;
+  
 }
 
 .discovered-icon-wrapper {
   display: flex;
   align-items: center;
-  /* Lägg gärna till extra styling, tex. en bakgrundsfärg eller rundning */
 }
 
 .discovered-icon {
