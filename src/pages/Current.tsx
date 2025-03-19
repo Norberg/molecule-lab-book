@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MoleculesList from "../components/MoleculesList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
 
@@ -41,34 +41,37 @@ const ReactionHintItem = ({
   const isDiscovered = Boolean(foundReactionLog);
   const [animateOverlay, setAnimateOverlay] = useState(false);
   const [animateDescription, setAnimateDescription] = useState(false);
+  const itemRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     if (isDiscovered) {
-      // Starta animations overlay och beskrivningsfade in vid upptäckt
+      // Trigger overlay and description fade-in animation on discovery
       setAnimateOverlay(true);
       setAnimateDescription(true);
+      // Scroll the discovered reaction into view
+      itemRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       const timer = setTimeout(() => {
         setAnimateOverlay(false);
-      }, 3000); // animationens varaktighet
+      }, 3000); // Animation duration
       return () => clearTimeout(timer);
     }
   }, [isDiscovered]);
 
   return (
-    <li key={index} className="reaction-hint-item">
+    <li ref={itemRef} className="reaction-hint-item">
       <div className="reaction-hint-description-wrapper">
         <div className="reaction-image-container">
           <img
-            src={`http://localhost:8000/reaction/image/${isRevealed ? item.reactionPath : item.reactionHintPath
-              }`}
-            alt={`Reaction image for ${isRevealed ? item.reactionPath : item.reactionHintPath
-              }`}
+            src={`http://localhost:8000/reaction/image/${
+              isRevealed ? item.reactionPath : item.reactionHintPath
+            }`}
+            alt={`Reaction image for ${
+              isRevealed ? item.reactionPath : item.reactionHintPath
+            }`}
           />
-          {/* Visas alltid om reactionen är discovered */}
           {isDiscovered && (
             <FaCheckCircle className="discovered-icon" title="Discovered" />
           )}
-          {/* Overlay för stor ikon-animation */}
           {animateOverlay && (
             <div className="discovered-overlay">
               <FaCheckCircle className="big-discovered-icon" title="Discovered" />
@@ -145,13 +148,13 @@ const Current = () => {
   const victoryMolecules = moleculesData
     .filter((molecule) => levelData.victoryCondition.includes(molecule.formula))
     .map(molecule => {
-      // Spara den ursprungliga beskrivande texten om den finns
+      // Store original description if available
       const originalDescription = molecule.property.Description || "";
-      // Kontrollera om någon reactionLog-produkter innehåller molekylens formel
+      // Check if any reaction log entry contains this molecule's formula
       const isDiscovered = levelData.reactionLog.some(
         (log) => log.products.includes(molecule.formula)
       );
-      // Clone molecule object to avoid changing the original object
+      // Clone the molecule object to avoid mutating the original
       molecule = JSON.parse(JSON.stringify(molecule));
       molecule.property.Description = isDiscovered ? originalDescription : "Not discovered yet";
       molecule.property.DescriptionAttribution = isDiscovered ? molecule.property.DescriptionAttribution : undefined;
@@ -183,11 +186,9 @@ const Current = () => {
               const foundReactionLog = levelData.reactionLog.find(
                 (log) => log.reactionPath === item.reactionPath
               );
-
               const isDiscovered = Boolean(foundReactionLog);
               const description = foundReactionLog ? foundReactionLog.description : "";
               const isRevealed = isDiscovered || revealed[index];
-
               return (
                 <ReactionHintItem
                   key={index}
