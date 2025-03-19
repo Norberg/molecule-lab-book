@@ -44,7 +44,7 @@
 
 .reaction-hint-item {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 20px;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .reaction-hint-description-wrapper {
-  width: 90%;
+  width: 100%;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -80,12 +80,30 @@
 
 .reaction-hint-description {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   line-height: 1.5;
   text-align: left;
   display: block;
-  
+  max-width: 800px;
+  border: 3px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.reaction-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.reaction-image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .discovered-icon-wrapper {
@@ -94,8 +112,11 @@
 }
 
 .discovered-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 2.0rem;
   color: green;
-  font-size: 1.5rem;
 }
 
 .reveal-button {

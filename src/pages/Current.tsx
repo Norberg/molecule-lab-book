@@ -125,23 +125,23 @@ const Current = () => {
               return (
                 <li key={index} className="reaction-hint-item">
                   <div className="reaction-hint-description-wrapper">
-                    <img
-                      src={`http://localhost:8000/reaction/image/${
-                        isRevealed ? item.reactionPath : item.reactionHintPath
-                      }`}
-                      alt={`Reaction image for ${
-                        isRevealed ? item.reactionPath : item.reactionHintPath
-                      }`}
-                    />
+                    <div className="reaction-image-container">
+                      <img
+                        src={`http://localhost:8000/reaction/image/${
+                          isRevealed ? item.reactionPath : item.reactionHintPath
+                        }`}
+                        alt={`Reaction image for ${
+                          isRevealed ? item.reactionPath : item.reactionHintPath
+                        }`}
+                      />
+                      {isDiscovered && (
+                        <FaCheckCircle className="discovered-icon" title="Discovered" />
+                      )}
+                    </div>
                     {isDiscovered ? (
-                      <>
-                        <div className="discovered-icon-wrapper">
-                          <FaCheckCircle className="discovered-icon" title="Discovered" />
-                        </div>
-                        <div className="reaction-hint-description-container">
-                          <p className="reaction-hint-description">{description}</p>
-                        </div>
-                      </>
+                      <div className="reaction-hint-description-container">
+                        <p className="reaction-hint-description">{description}</p>
+                      </div>
                     ) : (
                       <button onClick={() => toggleReveal(index)} className="reveal-button">
                         {isRevealed ? "Hide Reaction Path" : "Reveal Reaction Path"}
