@@ -4,7 +4,8 @@ import MoleculesList from "../components/MoleculesList";
 import { useState, useEffect, useRef } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
-import tagDescriptions from "../data/tagDescriptions";
+import tagDescriptions, { TagDescription } from "../data/tagDescriptions";
+import Popup from "../components/Popup";
 
 interface ReactionHint {
   reactants: string[];
@@ -42,8 +43,8 @@ const ReactionHintItem = ({
   const isDiscovered = Boolean(foundReactionLog);
   const [animateOverlay, setAnimateOverlay] = useState(false);
   const [animateDescription, setAnimateDescription] = useState(false);
-  const [popupContent, setPopupContent] = useState<TagDescription | null>(null); // State for popup content
-  const [popupPosition, setPopupPosition] = useState<{ top: number; left: number } | null>(null); // State for popup position
+  const [popupContent, setPopupContent] = useState<TagDescription | null>(null);
+  const [popupAnchor, setPopupAnchor] = useState<DOMRect | null>(null);
   const itemRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -60,35 +61,15 @@ const ReactionHintItem = ({
 
   const handleTagClick = (tag: string, event: React.MouseEvent<HTMLButtonElement>) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
-    let top = buttonRect.top + window.scrollY + buttonRect.height / 2;
-    let left = buttonRect.left + window.scrollX + buttonRect.width / 2;
-
-    const sidebarWidth = 250; // Sidebar width
-    const padding = 10; // Padding to prevent overlap with edges
-    const popupWidth = 800; // Max width
-    const popupHeight = 200; // Max height
-
-    // Adjust for right edge
-    if (left + popupWidth / 2 > window.innerWidth - sidebarWidth) {
-      left = window.innerWidth - sidebarWidth - popupWidth / 2 - padding;
-    } else if (left - popupWidth / 2 < 0) {
-      left = popupWidth / 2 + padding;
-    }
-
-    // Adjust for bottom edge
-    if (top + popupHeight / 2 > window.innerHeight) {
-      top = window.innerHeight - popupHeight / 2 - padding;
-    } else if (top - popupHeight / 2 < 0) {
-      top = popupHeight / 2 + padding;
-    }
-
-    setPopupPosition({ top, left });
-    setPopupContent(tagDescriptions[tag] || { title: tag, description: <>No description available.</> });
+    setPopupAnchor(buttonRect);
+    setPopupContent(
+      tagDescriptions[tag] || { title: tag, description: <>No description available.</> }
+    );
   };
 
   const closePopup = () => {
     setPopupContent(null);
-    setPopupPosition(null);
+    setPopupAnchor(null);
   };
 
   return (
@@ -99,9 +80,7 @@ const ReactionHintItem = ({
             src={`http://localhost:8000/reaction/image/${
               isRevealed ? item.reactionPath : item.reactionHintPath
             }`}
-            alt={`Reaction image for ${
-              isRevealed ? item.reactionPath : item.reactionHintPath
-            }`}
+            alt={`Reaction image for ${isRevealed ? item.reactionPath : item.reactionHintPath}`}
           />
           {isDiscovered && (
             <FaCheckCircle className="discovered-icon" title="Discovered" />
@@ -133,24 +112,8 @@ const ReactionHintItem = ({
           </button>
         )}
       </div>
-      {popupContent && popupPosition && (
-        <div
-          className="popup"
-          style={{
-            position: "absolute",
-            top: popupPosition.top,
-            left: popupPosition.left,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <div className="popup-content">
-            <h3>{popupContent.title}</h3>
-            <p>{popupContent.description}</p>
-            <button className="close-popup" onClick={closePopup}>
-              Close
-            </button>
-          </div>
-        </div>
+      {popupContent && popupAnchor && (
+        <Popup content={popupContent} anchorRect={popupAnchor} onClose={closePopup} />
       )}
     </li>
   );

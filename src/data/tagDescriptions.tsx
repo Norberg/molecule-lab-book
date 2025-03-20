@@ -1,11 +1,14 @@
 import React, { JSX } from "react"; // Import React för JSX.Element
 
 interface TagDescription {
+  title : string;
   description: JSX.Element; // Allows for rich formatting using JSX
 }
+export type { TagDescription };
 
 const tagDescriptions: Record<string, TagDescription> = {
   "Acid-base reaction": {
+    title: "Acid-base reaction",
     description: (
       <>
         An acid-base reaction is a type of chemical reaction where an acid reacts with a base to form water and a salt. 
@@ -18,6 +21,7 @@ const tagDescriptions: Record<string, TagDescription> = {
     ),
   },
   "Double displacement reaction": {
+    title: "Double displacement reaction",
     description: (
       <>
         A double displacement reaction, also known as a double replacement or metathesis reaction, occurs when two compounds 
