@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./MoleculesList.css";
+import { renderFormulas } from "../utils/formulaUtils";
 
 interface Molecule {
   formula: string;
@@ -57,21 +58,23 @@ const MoleculesList: React.FC<MoleculesListProps> = ({ molecules, expandedImage 
           {molecules.map((molecule, index) => (
             <tr key={index}>
               <td className="image-column">
-              <img
+                <img
                   src={`http://localhost:8000/molecule/${molecule.formula}/skeletal`}
                   alt={`${molecule.formula} skeletal structure`}
                   className="molecule-image"
-                  onMouseOver={(evt) => handleMouseOver(`http://localhost:8000/molecule/${molecule.formula}/skeletal`, evt)}
+                  onMouseOver={(evt) =>
+                    handleMouseOver(`http://localhost:8000/molecule/${molecule.formula}/skeletal`, evt)
+                  }
                   onMouseOut={handleMouseOut}
                   style={expandedImage ? { width: "300px", height: "300px" } : {}}
                 />
               </td>
-              <td>{molecule.formula}</td>
+              <td>{renderFormulas(molecule.formula)}</td>
               <td>{molecule.property.Name || "N/A"}</td>
               <td>
                 {molecule.property.Description ? (
                   <>
-                    {molecule.property.Description}{" "}
+                    {renderFormulas(molecule.property.Description)}{" "}
                     {molecule.property.DescriptionAttribution && (
                       <a
                         href={molecule.property.DescriptionAttribution}
