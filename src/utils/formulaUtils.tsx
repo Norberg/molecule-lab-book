@@ -77,3 +77,30 @@ export const renderFormulas = (text: string): React.ReactNode => {
   }
   return <>{elements}</>;
 };
+
+export const renderReaction = (reactants: string[], products: string[]): React.ReactNode => {
+  const aggregateFormulas = (formulas: string[]): { formula: string; count: number }[] => {
+    const map = new Map<string, number>();
+    formulas.forEach((formula) => {
+      map.set(formula, (map.get(formula) ?? 0) + 1);
+    });
+    return Array.from(map, ([formula, count]) => ({ formula, count }));
+  };
+
+  const renderAggregated = (aggregated: { formula: string; count: number }[]): React.ReactNode[] =>
+    aggregated.map(({ formula, count }, index) => (
+      <React.Fragment key={index}>
+        {count > 1 ? count + " " : ""}{renderFormulas(formula)}
+        {index < aggregated.length - 1 && " + "}
+      </React.Fragment>
+    ));
+
+  const aggregatedReactants = aggregateFormulas(reactants);
+  const aggregatedProducts = aggregateFormulas(products);
+
+  return (
+    <>
+      {renderAggregated(aggregatedReactants)} → {renderAggregated(aggregatedProducts)}
+    </>
+  );
+};

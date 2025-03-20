@@ -6,7 +6,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
 import tagDescriptions, { TagDescription } from "../data/tagDescriptions";
 import Popup from "../components/Popup";
-import { renderFormulas } from "../utils/formulaUtils";
+import { renderFormulas, renderReaction } from "../utils/formulaUtils";
 
 interface ReactionHint {
   reactants: string[];
@@ -93,7 +93,11 @@ const ReactionHintItem = ({
         </div>
         {isDiscovered ? (
           <div className={`reaction-hint-description-container ${animateDescription ? "fade-in" : ""}`}>
-            <div className="reaction-hint-description">{renderFormulas(description)}
+            <div className="reaction-hint-description">
+              <div className="reaction-formula">
+                {renderReaction(item.reactants, item.products)}
+              </div>
+              {renderFormulas(description)}
               <div className="reaction-tags">
                 {foundReactionLog?.tags.map((tag) => (
                   <button

@@ -1,8 +1,8 @@
-import { JSX } from "react"; // Import React för JSX.Element
+import { JSX } from "react";
 
 interface TagDescription {
   title : string;
-  description: JSX.Element; // Allows for rich formatting using JSX
+  description: JSX.Element;
 }
 export type { TagDescription };
 
