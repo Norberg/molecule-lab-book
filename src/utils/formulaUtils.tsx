@@ -1,36 +1,77 @@
 import React from "react";
 
+// Helper to render an existing <sub> or <sup> tag from the input.
+const renderExistingTag = (tag: string, key: number): React.ReactNode => {
+  const tagNameRegex = /<(sub|sup)>(.*?)<\/\1>/i;
+  const result = tagNameRegex.exec(tag);
+  if (result) {
+    const tagName = result[1];
+    const innerContent = result[2];
+    return React.createElement(tagName, { key }, innerContent);
+  }
+  return tag;
+};
+
+// Handles a chemical element and its optional count.
+const renderElementPart = (
+  element: string,
+  count: string,
+  key: number
+): React.ReactNode => {
+  return (
+    <React.Fragment key={key}>
+      {element}
+      {count && <sub>{count}</sub>}
+    </React.Fragment>
+  );
+};
+
+// Handles a charge, either rendering it in a <sup> if attached or as plain text.
+const renderChargePart = (
+  charge: string,
+  digits: string,
+  matchIndex: number,
+  text: string,
+  key: number
+): React.ReactNode => {
+  if ((digits && digits.length > 0) || (matchIndex > 0 && text[matchIndex - 1] !== " ")) {
+    return (
+      <sup key={key}>
+        {digits}
+        {charge}
+      </sup>
+    );
+  }
+  return charge;
+};
+
 export const renderFormulas = (text: string): React.ReactNode => {
-  const regex = /([A-Z][a-z]?)(\d*)|([+-])(\d*)/g;
+  // This regex will match either an existing <sub>/<sup> tag,
+  // a chemical element with an optional count, or a charge.
+  const regex = /(<(sub|sup)>.*?<\/\2>)|([A-Z][a-z]?)(\d*)|([+-])(\d*)/g;
   const elements: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let key = 0;
 
   while ((match = regex.exec(text)) !== null) {
+    // Push any plain text found before the current match.
     if (match.index > lastIndex) {
       elements.push(text.slice(lastIndex, match.index));
     }
     if (match[1]) {
-      // Matched element with optional count.
-      elements.push(
-        <React.Fragment key={key++}>
-          {match[1]}
-          {match[2] && <sub>{match[2]}</sub>}
-        </React.Fragment>
-      );
+      // Case 1: Existing <sub> or <sup> tag.
+      elements.push(renderExistingTag(match[1], key++));
     } else if (match[3]) {
-      // Matched a charge with an optional number.
-      const chargeDigits = match[4] ? match[4] : "";
-      elements.push(
-        <sup key={key++}>
-          {chargeDigits}
-          {match[3]}
-        </sup>
-      );
+      // Case 2: Element with optional count.
+      elements.push(renderElementPart(match[3], match[4] || "", key++));
+    } else if (match[5]) {
+      // Case 3: Charge symbol (+ or -) with optional digits.
+      elements.push(renderChargePart(match[5], match[6] || "", match.index, text, key++));
     }
     lastIndex = regex.lastIndex;
   }
+  // Append any remaining text after the last match.
   if (lastIndex < text.length) {
     elements.push(text.slice(lastIndex));
   }
