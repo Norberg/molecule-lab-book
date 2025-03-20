@@ -60,10 +60,29 @@ const ReactionHintItem = ({
 
   const handleTagClick = (tag: string, event: React.MouseEvent<HTMLButtonElement>) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
-    setPopupPosition({
-      top: buttonRect.top + window.scrollY + buttonRect.height / 2,
-      left: buttonRect.left + window.scrollX + buttonRect.width / 2,
-    });
+    let top = buttonRect.top + window.scrollY + buttonRect.height / 2;
+    let left = buttonRect.left + window.scrollX + buttonRect.width / 2;
+
+    const sidebarWidth = 250; // Sidebar width
+    const padding = 10; // Padding to prevent overlap with edges
+    const popupWidth = 800; // Max width
+    const popupHeight = 200; // Max height
+
+    // Adjust for right edge
+    if (left + popupWidth / 2 > window.innerWidth - sidebarWidth) {
+      left = window.innerWidth - sidebarWidth - popupWidth / 2 - padding;
+    } else if (left - popupWidth / 2 < 0) {
+      left = popupWidth / 2 + padding;
+    }
+
+    // Adjust for bottom edge
+    if (top + popupHeight / 2 > window.innerHeight) {
+      top = window.innerHeight - popupHeight / 2 - padding;
+    } else if (top - popupHeight / 2 < 0) {
+      top = popupHeight / 2 + padding;
+    }
+
+    setPopupPosition({ top, left });
     setPopupContent(tagDescriptions[tag] || { title: tag, description: <>No description available.</> });
   };
 
