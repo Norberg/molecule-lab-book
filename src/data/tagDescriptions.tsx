@@ -12,8 +12,8 @@ const tagDescriptions: Record<string, TagDescription> = {
     description: (
       <>
         An acid-base reaction is a type of chemical reaction where an acid reacts with a base to form water and a salt. 
-        This reaction is an example of neutralization, where the hydrogen ions (<strong>H+</strong>) from the acid combine 
-        with the hydroxide ions (<strong>OH-</strong>) from the base to produce water. The resulting salt is a compound 
+        This reaction is an example of neutralization, where the hydrogen ions (<strong>H<sup>+</sup></strong>) from the acid combine 
+        with the hydroxide ions (<strong>OH<sup>-</sup></strong>) from the base to produce water. The resulting salt is a compound 
         formed from the remaining ions of the acid and base. These reactions are common in various chemical processes, 
         including digestion and the neutralization of harmful substances. The pH of the solution typically moves towards 7, 
         indicating a neutral solution. Acid-base reactions are important in both industrial applications and biological systems.
