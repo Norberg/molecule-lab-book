@@ -4,6 +4,7 @@ import MoleculesList from "../components/MoleculesList";
 import { useState, useEffect, useRef } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
+import tagDescriptions from "../data/tagDescriptions";
 
 interface ReactionHint {
   reactants: string[];
@@ -41,14 +42,14 @@ const ReactionHintItem = ({
   const isDiscovered = Boolean(foundReactionLog);
   const [animateOverlay, setAnimateOverlay] = useState(false);
   const [animateDescription, setAnimateDescription] = useState(false);
+  const [popupContent, setPopupContent] = useState<TagDescription | null>(null); // State for popup content
+  const [popupPosition, setPopupPosition] = useState<{ top: number; left: number } | null>(null); // State for popup position
   const itemRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     if (isDiscovered) {
-      // Trigger overlay and description fade-in animation on discovery
       setAnimateOverlay(true);
       setAnimateDescription(true);
-      // Scroll the discovered reaction into view
       itemRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       const timer = setTimeout(() => {
         setAnimateOverlay(false);
@@ -56,6 +57,20 @@ const ReactionHintItem = ({
       return () => clearTimeout(timer);
     }
   }, [isDiscovered]);
+
+  const handleTagClick = (tag: string, event: React.MouseEvent<HTMLButtonElement>) => {
+    const buttonRect = event.currentTarget.getBoundingClientRect();
+    setPopupPosition({
+      top: buttonRect.top + window.scrollY + buttonRect.height / 2,
+      left: buttonRect.left + window.scrollX + buttonRect.width / 2,
+    });
+    setPopupContent(tagDescriptions[tag] || { title: tag, description: <>No description available.</> });
+  };
+
+  const closePopup = () => {
+    setPopupContent(null);
+    setPopupPosition(null);
+  };
 
   return (
     <li ref={itemRef} className="reaction-hint-item">
@@ -81,6 +96,17 @@ const ReactionHintItem = ({
         {isDiscovered ? (
           <div className={`reaction-hint-description-container ${animateDescription ? "fade-in" : ""}`}>
             <p className="reaction-hint-description">{description}</p>
+            <div className="reaction-tags">
+              {foundReactionLog?.tags.map((tag) => (
+                <button
+                  key={tag}
+                  className="tag-button"
+                  onClick={(event) => handleTagClick(tag, event)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </div>
         ) : (
           <button onClick={() => toggleReveal(index)} className="reveal-button">
@@ -88,6 +114,25 @@ const ReactionHintItem = ({
           </button>
         )}
       </div>
+      {popupContent && popupPosition && (
+        <div
+          className="popup"
+          style={{
+            position: "absolute",
+            top: popupPosition.top,
+            left: popupPosition.left,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <div className="popup-content">
+            <h3>{popupContent.title}</h3>
+            <p>{popupContent.description}</p>
+            <button className="close-popup" onClick={closePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </li>
   );
 };
