@@ -134,10 +134,7 @@
   margin-top: 10px; 
   text-align: left;
   background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 5px;
   position: relative; /* Ensures popup is positioned relative to this container */
 }
 

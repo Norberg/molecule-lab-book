@@ -77,9 +77,8 @@ const ReactionHintItem = ({
       <div className="reaction-hint-description-wrapper">
         <div className="reaction-image-container">
           <img
-            src={`http://localhost:8000/reaction/image/${
-              isRevealed ? item.reactionPath : item.reactionHintPath
-            }`}
+            src={`http://localhost:8000/reaction/image/${isRevealed ? item.reactionPath : item.reactionHintPath
+              }`}
             alt={`Reaction image for ${isRevealed ? item.reactionPath : item.reactionHintPath}`}
           />
           {isDiscovered && (
@@ -93,17 +92,18 @@ const ReactionHintItem = ({
         </div>
         {isDiscovered ? (
           <div className={`reaction-hint-description-container ${animateDescription ? "fade-in" : ""}`}>
-            <p className="reaction-hint-description">{description}</p>
-            <div className="reaction-tags">
-              {foundReactionLog?.tags.map((tag) => (
-                <button
-                  key={tag}
-                  className="tag-button"
-                  onClick={(event) => handleTagClick(tag, event)}
-                >
-                  {tag}
-                </button>
-              ))}
+            <div className="reaction-hint-description">{description}
+              <div className="reaction-tags">
+                {foundReactionLog?.tags.map((tag) => (
+                  <button
+                    key={tag}
+                    className="tag-button"
+                    onClick={(event) => handleTagClick(tag, event)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
