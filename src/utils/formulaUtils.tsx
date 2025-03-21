@@ -46,6 +46,9 @@ const renderChargePart = (
 };
 
 export const renderFormulas = (text: string): React.ReactNode => {
+  if (!text) {
+    return null; // Return null if text is null or undefined
+  }
   // This regex will match either an existing <sub>/<sup> tag,
   // a chemical element with an optional count, or a charge.
   const regex = /(<(sub|sup)>.*?<\/\2>)|([A-Z][a-z]?)(\d*)|([+-])(\d*)/g;
