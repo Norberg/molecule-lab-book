@@ -152,6 +152,30 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Addition reaction": {
+    title: "Addition reaction",
+    description: (
+      <>
+        An addition reaction involves the combining of two or more molecules to form a single product without producing any byproducts.
+        It typically occurs when reactants add across a multiple bond, such as a double or triple bond, resulting in a more saturated compound.
+        This reaction mechanism is extensively utilized in organic synthesis to create a wide variety of functionalized compounds.
+        Addition reactions are crucial for the production of polymers, pharmaceuticals, and specialty chemicals. 
+        Their controlled nature facilitates the design of complex molecules in both laboratory and industrial settings.
+      </>
+    ),
+  },
+  "Electrophilic addition": {
+    title: "Electrophilic addition",
+    description: (
+      <>
+        Electrophilic addition is a specific type of addition reaction where an electrophile targets a region of high electron density,
+        typically a carbon-carbon double bond. The reaction begins when the electrophile forms a bond with one of the carbons, 
+        creating a reactive intermediate. This intermediate is then attacked by a nucleophile to complete the addition process. 
+        Electrophilic addition is widely employed in organic synthesis for modifying alkenes and alkynes. Its versatility makes 
+        it a fundamental reaction for constructing a broad range of industrial chemicals and pharmaceuticals.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
