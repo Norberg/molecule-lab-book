@@ -278,6 +278,170 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Protonation": {
+    title: "Protonation",
+    description: (
+      <>
+        Protonation is the process of adding a proton (H⁺) to a molecule, resulting in the formation of a positively charged species. This reaction often increases the
+        reactivity of the molecule by altering its electron density. Protonation is common in acid-base chemistry and plays a pivotal role in many biochemical reactions.
+        It can serve as an activation step for subsequent transformations, enabling molecules to undergo further chemical changes. The process is typically reversible,
+        depending on the reaction conditions and the strength of the acid involved.
+      </>
+    ),
+  },
+  "Carbocation formation": {
+    title: "Carbocation formation",
+    description: (
+      <>
+        Carbocation formation involves the generation of a positively charged carbon center through heterolytic bond cleavage. This intermediate is central to many
+        organic reactions, where it acts as an electrophile. The formation of carbocations is often a rate-determining step and can dictate the overall reaction pathway.
+        Their stability depends on factors such as substituent effects, resonance, and hyperconjugation. Carbocation intermediates are key players in rearrangement,
+        substitution, and addition reactions in organic synthesis.
+      </>
+    ),
+  },
+  "Ether formation": {
+    title: "Ether formation",
+    description: (
+      <>
+        Ether formation refers to the creation of an ether bond, where an oxygen atom links two alkyl or aryl groups together. This process typically occurs via
+        nucleophilic substitution, where an oxygen nucleophile attacks a carbocation or another electrophilic center. The resulting ethers are important in both
+        industrial processes and the synthesis of pharmaceuticals. Ether formation reactions often require careful control of reaction conditions to minimize side reactions.
+        They are a central methodology in organic chemistry for constructing molecules with diverse physical and chemical properties.
+      </>
+    ),
+  },
+  "Catalytic cycle": {
+    title: "Catalytic cycle",
+    description: (
+      <>
+        The catalytic cycle describes a series of reaction steps in which a catalyst participates and is regenerated at the end of the process. This cycle
+        facilitates the conversion of reactants to products while minimizing the overall activation energy required. It highlights the efficiency and sustainability
+        of catalyzed reactions by showing how the catalyst is reused. Catalytic cycles are fundamental in both industrial chemistry and biological systems,
+        ensuring reaction continuity and high turnover numbers. The concept aids in understanding and optimizing reaction mechanisms involving catalysts.
+      </>
+    ),
+  },
+  "Amination reaction": {
+    title: "Amination reaction",
+    description: (
+      <>
+        An amination reaction introduces an amino group into a molecule, thereby transforming its reactivity and properties. It often occurs as a key step in the synthesis
+        of pharmaceuticals and agrochemicals. This reaction can proceed via nucleophilic substitution or electrophilic pathways, depending on the substrate. Amination reactions
+        are instrumental in constructing complex nitrogen-containing structures and can be catalyzed by metals or enzymes. Their versatility makes them indispensable in organic synthesis.
+      </>
+    ),
+  },
+  "Chain growth reaction": {
+    title: "Chain growth reaction",
+    description: (
+      <>
+        A chain growth reaction is a polymerization mechanism where the active center of the polymer chain continuously adds monomer units. This process allows the molecular
+        weight of the polymer to increase rapidly until termination occurs. It is typically initiated by a reactive species that propagates the chain reaction. Chain growth reactions
+        are fundamental in producing a wide range of synthetic polymers used in everyday materials and high-performance applications. Their control is essential for achieving
+        desired polymer properties.
+      </>
+    ),
+  },
+  "Condensation reaction": {
+    title: "Condensation reaction",
+    description: (
+      <>
+        A condensation reaction involves the joining of two molecules with the concomitant elimination of a small molecule such as water or methanol. This reaction mechanism
+        is common in the formation of esters, amides, and peptides. It is characterized by the combination of functional groups that results in a more complex structure.
+        Condensation reactions play a pivotal role in both organic synthesis and biological processes, such as protein formation. Their reversible nature also makes them useful
+        in dynamic covalent chemistry.
+      </>
+    ),
+  },
+  "Hydrolysis reaction": {
+    title: "Hydrolysis reaction",
+    description: (
+      <>
+        A hydrolysis reaction involves the cleavage of chemical bonds by the addition of water. This reaction is essential in both organic and inorganic chemistry, as it
+        contributes to the breakdown of complex molecules into simpler components. Hydrolysis plays a significant role in biological digestion and environmental degradation.
+        The reaction conditions such as pH and temperature greatly influence the reaction rate and product distribution. Its reversibility is often exploited in industrial processes
+        to modify material properties.
+      </>
+    ),
+  },
+  "Amide formation": {
+    title: "Amide formation",
+    description: (
+      <>
+        Amide formation is a reaction that creates an amide bond by coupling a carboxylic acid or its derivative with an amine. This process is fundamental in the synthesis
+        of peptides and pharmaceuticals, as well as in polymer chemistry. It generally requires activation of the acid component or the use of a catalyst to improve efficiency.
+        The resulting amide linkage contributes to the stability and bioactivity of the molecule. Control over the reaction conditions is critical to minimize side reactions and
+        achieve high yields.
+      </>
+    ),
+  },
+  "Multicomponent reaction": {
+    title: "Multicomponent reaction",
+    description: (
+      <>
+        A multicomponent reaction involves three or more reactants in a single synthetic operation to form a product that incorporates substantial portions of all the inputs.
+        This strategy is highly efficient as it enables rapid synthesis of complex molecules while minimizing purification steps. It has found significant applications in drug discovery,
+        combinatorial chemistry, and material science. These reactions often display high atom economy and generate diverse libraries of compounds.
+        Their design requires careful optimization of reaction conditions to balance reactivity and selectivity.
+      </>
+    ),
+  },
+  "Nitrile addition": {
+    title: "Nitrile addition",
+    description: (
+      <>
+        Nitrile addition refers to a reaction where a nitrile group is added across a multiple bond or inserted into a substrate, enhancing the nitrogen content of the molecule.
+        This reaction is commonly observed in the formation of complex nitrogenous compounds and serves as a key step in many prebiotic syntheses. It can proceed through various
+        mechanisms, often involving nucleophilic attack on an electrophilic center. The resulting products are useful intermediates in the synthesis of heterocyclic compounds.
+        Such reactions underscore the emerging importance of nitrile chemistry in both laboratory and industrial settings.
+      </>
+    ),
+  },
+  "Nucleophilic addition": {
+    title: "Nucleophilic addition",
+    description: (
+      <>
+        Nucleophilic addition is a reaction mechanism in which a nucleophile forms a bond with an electron-deficient substrate, typically an unsaturated carbonyl compound.
+        This process results in the direct formation of new carbon-heteroatom bonds and is fundamental to many organic transformations. It plays a crucial role in
+        synthesizing alcohols, amines, and other functional groups by adding across double bonds. The reaction pathway is often sensitive to steric and electronic factors,
+        dictating its regio- and stereoselectivity. Its broad applicability makes nucleophilic addition a cornerstone of synthetic organic chemistry.
+      </>
+    ),
+  },
+  "Polymerization reaction": {
+    title: "Polymerization reaction",
+    description: (
+      <>
+        A polymerization reaction is a process that converts monomer molecules into polymers through repeated chemical bonding. This reaction can occur via chain growth
+        or step-growth mechanisms, resulting in materials with tailored physical and chemical properties. Polymerization is central to the production of plastics, rubbers,
+        and fibers used in a myriad of applications. Control of the reaction conditions allows for precise manipulation of molecular weight and architecture.
+        These reactions not only contribute to material science but also to innovative biomedical applications.
+      </>
+    ),
+  },
+  "Photochemical reaction": {
+    title: "Photochemical reaction",
+    description: (
+      <>
+        Photochemical reactions are driven by the absorption of light, which promotes chemical species to excited states and alters their reactivity. These reactions are
+        pivotal in processes ranging from atmospheric chemistry to the synthesis of complex organic molecules. The input of light energy allows for unique reaction pathways
+        that are not accessible under thermal conditions. Photochemical transformations often lead to rearrangements, cyclizations, or isomerizations that contribute to molecular diversity.
+        Their application in synthetic chemistry continues to grow with advances in light sources and catalyst design.
+      </>
+    ),
+  },
+  "Cyclization": {
+    title: "Cyclization",
+    description: (
+      <>
+        Cyclization is a reaction that leads to the formation of a ring structure through the intramolecular bonding of atoms in a molecule. This process is crucial
+        in the formation of cyclic compounds, which are prevalent in natural products, pharmaceuticals, and polymers. Cyclization reactions can occur via various mechanisms,
+        such as nucleophilic substitution or addition, often requiring specific catalysts or reaction conditions. They contribute to the rigidity and specific chemical behavior
+        of cyclic molecules compared to their acyclic counterparts. The ability to efficiently form rings is a cornerstone of synthetic strategies in organic chemistry.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
