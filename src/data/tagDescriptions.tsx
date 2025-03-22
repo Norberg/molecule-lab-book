@@ -45,6 +45,26 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Oxidation reaction": {
+    title: "Oxidation reaction",
+    description: (
+      <>
+        An oxidation reaction is characterized by the loss of electrons from a chemical species, often occurring with the involvement of oxygen or other oxidizing agents.
+        This process is central to phenomena such as corrosion, cellular respiration, and energy production. It is usually coupled with a corresponding reduction reaction 
+        to maintain the electron balance. Understanding oxidation reactions is crucial for controlling material degradation and optimizing industrial processes.
+      </>
+    ),
+  },
+  "Reduction reaction": {
+    title: "Reduction reaction",
+    description: (
+      <>
+        A reduction reaction involves the gain of electrons by a chemical species, resulting in a decrease in its oxidation state. This process is often accompanied by
+        the transfer of protons or the removal of oxygen atoms. Reduction reactions are essential in biological systems, such as photosynthesis and cellular respiration,
+        as well as in industrial processes like metal extraction and wastewater treatment. They are frequently paired with oxidation reactions to form redox reactions.
+      </>
+    ),
+  },
   "Precipitation reaction": {
     title: "Precipitation reaction",
     description: (
@@ -131,16 +151,6 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
-  "Oxidation reaction": {
-    title: "Oxidation reaction",
-    description: (
-      <>
-        An oxidation reaction is characterized by the loss of electrons from a chemical species, often occurring with the involvement of oxygen or other oxidizing agents.
-        This process is central to phenomena such as corrosion, cellular respiration, and energy production. It is usually coupled with a corresponding reduction reaction 
-        to maintain the electron balance. Understanding oxidation reactions is crucial for controlling material degradation and optimizing industrial processes.
-      </>
-    ),
-  },
   "Catalytic reaction": {
     title: "Catalytic reaction",
     description: (
@@ -173,6 +183,98 @@ const tagDescriptions: Record<string, TagDescription> = {
         creating a reactive intermediate. This intermediate is then attacked by a nucleophile to complete the addition process. 
         Electrophilic addition is widely employed in organic synthesis for modifying alkenes and alkynes. Its versatility makes 
         it a fundamental reaction for constructing a broad range of industrial chemicals and pharmaceuticals.
+      </>
+    ),
+  },
+  "Substitution reaction": {
+    title: "Substitution reaction",
+    description: (
+      <>
+        A substitution reaction is a type of chemical reaction where one atom or group of atoms in a molecule is replaced by another atom or group of atoms.
+        This reaction is common in organic and inorganic chemistry and can occur via different mechanisms, such as nucleophilic, electrophilic, or radical substitution.
+        Substitution reactions are widely used in the synthesis of pharmaceuticals, agrochemicals, and polymers, enabling the functionalization of molecules
+        to achieve desired properties or reactivity.
+      </>
+    ),
+  },
+  "Electrophilic substitution": {
+    title: "Electrophilic substitution",
+    description: (
+      <>
+        Electrophilic substitution is a type of chemical reaction where an electrophile replaces a hydrogen atom or another substituent in an aromatic compound.
+        This reaction preserves the aromaticity of the compound and is widely used in the synthesis of dyes, pharmaceuticals, and agrochemicals. Common examples
+        include nitration, halogenation, and sulfonation of benzene derivatives.
+      </>
+    ),
+  },
+  "Nucleophilic substitution": {
+    title: "Nucleophilic substitution",
+    description: (
+      <>
+        Nucleophilic substitution is a specific type of substitution reaction where a nucleophile, a species with a lone pair of electrons, attacks an electrophilic center
+        in a molecule, replacing a leaving group. This reaction is fundamental in organic synthesis, particularly in the formation of alcohols, ethers, and amines.
+        It can proceed via two main mechanisms: SN1 (unimolecular) and SN2 (bimolecular), depending on the reaction conditions and substrate structure.
+      </>
+    ),
+  },
+  "Aromatic substitution": {
+    title: "Aromatic substitution",
+    description: (
+      <>
+        Aromatic substitution is a type of chemical reaction where a substituent on an aromatic ring is replaced by another atom or group of atoms.
+        This reaction preserves the aromaticity of the ring and is widely used in organic synthesis. Common types include electrophilic aromatic substitution,
+        where an electrophile replaces a hydrogen atom, and nucleophilic aromatic substitution, where a nucleophile replaces a leaving group.
+        Aromatic substitution reactions are fundamental in the production of dyes, pharmaceuticals, and agrochemicals.
+      </>
+    ),
+  },
+  "Esterification reaction": {
+    title: "Esterification reaction",
+    description: (
+      <>
+        An esterification reaction is a chemical process in which an alcohol reacts with a carboxylic acid to form an ester and water. This reaction is typically catalyzed
+        by an acid, such as sulfuric acid, and is widely used in the production of fragrances, flavors, and polymers. Esterification is a reversible reaction, and the yield
+        can be improved by removing water or using an excess of one reactant.
+      </>
+    ),
+  },
+  "Acetylation reaction": {
+    title: "Acetylation reaction",
+    description: (
+      <>
+        An acetylation reaction involves the introduction of an acetyl group (CH3CO) into a molecule, typically replacing a hydrogen atom. This reaction is commonly used
+        in organic synthesis to modify the chemical and physical properties of compounds, such as increasing stability or altering reactivity. Acetylation is a key step
+        in the production of pharmaceuticals, dyes, and polymers.
+      </>
+    ),
+  },
+  "Functionalization reaction": {
+    title: "Functionalization reaction",
+    description: (
+      <>
+        A functionalization reaction introduces or modifies functional groups in a molecule to enhance its chemical reactivity or physical properties. This process is
+        essential in organic synthesis, enabling the creation of complex molecules with specific functionalities. Functionalization reactions are widely used in the
+        development of pharmaceuticals, materials, and catalysts.
+      </>
+    ),
+  },
+  "Markovnikov's rule": {
+    title: "Markovnikov's rule",
+    description: (
+      <>
+        Markovnikov's rule is a principle in organic chemistry that predicts the outcome of addition reactions to unsymmetrical alkenes. According to this rule, the
+        electrophile adds to the carbon atom with the greater number of hydrogen atoms, while the nucleophile adds to the carbon with fewer hydrogen atoms. This rule
+        helps explain the regioselectivity of many addition reactions and is fundamental in understanding reaction mechanisms.
+      </>
+    ),
+  },
+  "Metabolic reaction": {
+    title: "Metabolic reaction",
+    description: (
+      <>
+        A metabolic reaction refers to a chemical process that occurs within living organisms to sustain life. These reactions are categorized into two types:
+        catabolic reactions, which break down molecules to release energy, and anabolic reactions, which build complex molecules from simpler ones. Metabolic
+        reactions are essential for energy production, growth, and cellular repair.
       </>
     ),
   },
