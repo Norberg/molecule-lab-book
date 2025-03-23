@@ -217,6 +217,17 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Nucleophilic attack": {
+    title: "Nucleophilic attack",
+    description: (
+      <>
+        Nucleophilic attack is a chemical reaction mechanism where a nucleophile, a species with a lone pair of electrons, forms a bond with an electrophilic center in a molecule.
+        This process results in the displacement of a leaving group and the formation of a new covalent bond. Nucleophilic attacks are common in organic chemistry and are essential
+        in the synthesis of various functional groups, such as alcohols, amines, and ethers. The regio- and stereochemistry of the reaction are influenced by factors such as steric hindrance
+        and electronic effects.
+      </>
+    ),
+  },
   "Aromatic substitution": {
     title: "Aromatic substitution",
     description: (
@@ -439,6 +450,38 @@ const tagDescriptions: Record<string, TagDescription> = {
         in the formation of cyclic compounds, which are prevalent in natural products, pharmaceuticals, and polymers. Cyclization reactions can occur via various mechanisms,
         such as nucleophilic substitution or addition, often requiring specific catalysts or reaction conditions. They contribute to the rigidity and specific chemical behavior
         of cyclic molecules compared to their acyclic counterparts. The ability to efficiently form rings is a cornerstone of synthetic strategies in organic chemistry.
+      </>
+    ),
+  },
+  "Alkyl halide reaction": {
+    title: "Alkyl halide reaction",
+    description: (
+      <>
+        An alkyl halide reaction involves the substitution of a halogen atom in an alkyl halide with another nucleophile. This reaction is fundamental in organic synthesis
+        and is often used to introduce functional groups or modify the reactivity of alkyl halides. Alkyl halides are versatile intermediates that can undergo various substitution
+        mechanisms, such as SN1 or SN2, depending on the nature of the nucleophile and leaving group. The resulting products are essential building blocks in the preparation of
+        complex organic molecules.
+      </>
+    ),
+  },
+  "Acid dissociation" : {
+    title: "Acid dissociation",
+    description: (
+      <>
+        Acid dissociation is the process by which an acid releases a proton (H⁺) in an aqueous solution, forming a conjugate base. This reaction is essential in acid-base chemistry
+        and plays a key role in determining the strength of an acid. The equilibrium constant for acid dissociation, known as the acid dissociation constant (Ka), quantifies the extent
+        of proton transfer. Understanding acid dissociation is crucial in various fields, from chemical analysis to biological systems, where pH regulation is critical.
+      </>
+    ),
+  },
+  "Ionization" : {
+    title: "Ionization",
+    description: (
+      <>
+        Ionization is the process by which an atom or molecule acquires a positive or negative charge by gaining or losing electrons. This reaction is fundamental in chemical
+        transformations, such as acid-base reactions and redox processes. Ionization can occur through various mechanisms, including electron transfer, proton transfer, or photon absorption.
+        The resulting ions are essential in the formation of ionic compounds and play a crucial role in the behavior of matter in solution. Ionization is a key concept in understanding
+        the reactivity and properties of chemical species.
       </>
     ),
   },
