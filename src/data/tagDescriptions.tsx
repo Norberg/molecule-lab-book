@@ -485,6 +485,46 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Aromatic nitration"  : {
+    title: "Aromatic nitration",
+    description: (
+      <>
+        Aromatic nitration is a chemical reaction in which a nitro group (NO₂) is introduced into an aromatic compound. This process is commonly used in the synthesis of explosives,
+        dyes, and pharmaceuticals. Aromatic nitration typically involves the substitution of a hydrogen atom with a nitro group, often under acidic or acidic conditions. The resulting
+        nitroaromatic compounds exhibit unique chemical and physical properties that make them valuable building blocks in organic chemistry.
+      </>
+    ),
+  },
+  "Meta directing group" : {
+    title: "Meta directing group",
+    description: (
+      <>
+        A meta directing group is a substituent on an aromatic ring that directs incoming electrophiles to the meta position during electrophilic aromatic substitution reactions.
+        This behavior is due to the stabilization of the transition state when the electrophile attacks the meta position. Meta directing groups are essential in organic synthesis,
+        as they allow for the selective functionalization of aromatic compounds. Common meta directing groups include nitro, carbonyl, and cyano groups.
+      </>
+    ),
+  },
+  "Ortho directing group" : {
+    title: "Ortho directing group",
+    description: (
+      <>
+        An ortho directing group is a substituent on an aromatic ring that directs incoming electrophiles to the ortho position during electrophilic aromatic substitution reactions.
+        This behavior is due to the stabilization of the transition state when the electrophile attacks the ortho position. Ortho directing groups are crucial in organic synthesis,
+        as they enable the selective functionalization of aromatic compounds. Common ortho directing groups include alkyl, alkoxy, and halogen substituents.
+      </>
+    ),
+  },
+  "Para directing group" : {
+    title: "Para directing group",
+    description: (
+      <>
+        A para directing group is a substituent on an aromatic ring that directs incoming electrophiles to the para position during electrophilic aromatic substitution reactions.
+        This behavior is due to the stabilization of the transition state when the electrophile attacks the para position. Para directing groups are essential in organic synthesis,
+        as they allow for the selective functionalization of aromatic compounds. Common para directing groups include amino, hydroxyl, and alkoxyl substituents.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
