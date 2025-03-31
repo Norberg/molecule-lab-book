@@ -217,6 +217,28 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "SN1 reaction" : {
+    title: "SN1 reaction",
+    description: (
+      <>
+        The SN1 reaction, or unimolecular nucleophilic substitution, is a type of substitution reaction where the rate-determining step involves the dissociation of a leaving group
+        to form a carbocation intermediate. The nucleophile then attacks the carbocation to complete the substitution process. SN1 reactions are characterized by a two-step mechanism
+        and are favored by polar protic solvents and tertiary substrates. They often proceed with racemization or inversion of stereochemistry, depending on the nucleophile and leaving group.
+        Understanding SN1 reactions is essential in organic synthesis and drug development.
+      </>
+    ),
+  },
+  "SN2 reaction" : {
+    title: "SN2 reaction",
+    description: (
+      <>
+        The SN2 reaction, or bimolecular nucleophilic substitution, is a type of substitution reaction where the nucleophile attacks the substrate simultaneously with the departure of the leaving group.
+        This concerted mechanism results in inversion of stereochemistry at the reaction center. SN2 reactions are favored by polar aprotic solvents and primary or secondary substrates.
+        They are known for their one-step, backside attack process and are widely used in organic synthesis to introduce new functional groups. Understanding SN2 reactions is crucial for controlling
+        regio- and stereochemistry in chemical transformations.
+      </>
+    ),
+  },
   "Nucleophilic attack": {
     title: "Nucleophilic attack",
     description: (
@@ -236,6 +258,16 @@ const tagDescriptions: Record<string, TagDescription> = {
         This reaction preserves the aromaticity of the ring and is widely used in organic synthesis. Common types include electrophilic aromatic substitution,
         where an electrophile replaces a hydrogen atom, and nucleophilic aromatic substitution, where a nucleophile replaces a leaving group.
         Aromatic substitution reactions are fundamental in the production of dyes, pharmaceuticals, and agrochemicals.
+      </>
+    ),
+  },
+  "Electrophilic aromatic substitution": {
+    title: "Electrophilic aromatic substitution",
+    description: (
+      <>
+        Electrophilic aromatic substitution is a type of chemical reaction where an electrophile replaces a hydrogen atom on an aromatic ring.
+        This reaction is a key process in organic synthesis, enabling the functionalization of aromatic compounds. Common examples include nitration, halogenation,
+        and sulfonation of benzene derivatives. Electrophilic aromatic substitution is widely used in the production of dyes, pharmaceuticals, and polymers.
       </>
     ),
   },
@@ -522,6 +554,38 @@ const tagDescriptions: Record<string, TagDescription> = {
         A para directing group is a substituent on an aromatic ring that directs incoming electrophiles to the para position during electrophilic aromatic substitution reactions.
         This behavior is due to the stabilization of the transition state when the electrophile attacks the para position. Para directing groups are essential in organic synthesis,
         as they allow for the selective functionalization of aromatic compounds. Common para directing groups include amino, hydroxyl, and alkoxyl substituents.
+      </>
+    ),
+  },
+  "Alcohol synthesis" : {
+    title: "Alcohol synthesis",
+    description: (
+      <>
+        Alcohol synthesis refers to the formation of alcohols through various chemical reactions. Alcohols are versatile compounds with numerous applications in organic synthesis,
+        pharmaceuticals, and industry. Common methods for alcohol synthesis include hydration of alkenes, reduction of carbonyl compounds, and nucleophilic substitution of alkyl halides.
+        The choice of synthetic route depends on the starting materials and desired alcohol type. Alcohol synthesis is a key step in the preparation of complex molecules and functionalized
+        intermediates for further transformations.
+      </>
+    ),
+  },
+  "Oxonium intermediate" : {
+    title: "Oxonium intermediate",
+    description: (
+      <>
+        An oxonium intermediate is a positively charged oxygen species that forms during the protonation of alcohols or ethers. This reactive intermediate is crucial in various
+        organic transformations, such as nucleophilic substitution and acid-catalyzed reactions. Oxonium ions are stabilized by neighboring groups or solvent molecules and can undergo
+        subsequent reactions with nucleophiles or bases. Understanding the reactivity and stability of oxonium intermediates is essential in designing efficient synthetic routes
+        and controlling reaction selectivity.
+      </>
+    ),
+  },
+  "Proton recombination" : {
+    title: "Proton recombination",
+    description: (
+      <>
+        Proton recombination is the process by which a proton (H⁺) combines with an electron to form a hydrogen atom. This reaction is essential in maintaining the charge balance
+        in chemical systems and is often coupled with electron transfer processes. Proton recombination can occur in various environments, such as in aqueous solutions, plasmas,
+        and interstellar space. The resulting hydrogen atoms play a crucial role in chemical reactions and energy transfer processes.
       </>
     ),
   },
