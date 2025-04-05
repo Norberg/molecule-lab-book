@@ -589,6 +589,71 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Isomerization" : {
+    title: "Isomerization",
+    description: (
+      <>
+        Isomerization is a chemical reaction that involves the rearrangement of atoms within a molecule to form a different isomer. This process can occur through various mechanisms,
+        including structural, geometric, and stereoisomerization. Isomerization reactions are important in organic chemistry, as they can significantly alter the physical and chemical
+        properties of compounds. They play a crucial role in metabolic pathways, catalysis, and the synthesis of complex molecules.
+      </>
+    ),
+  },
+  "Catalytic reforming" : {
+    title: "Catalytic reforming",
+    description: (
+      <>
+        Catalytic reforming is a chemical process that converts low-octane hydrocarbons into high-octane gasoline components through the use of catalysts. This reaction typically
+        involves the rearrangement of hydrocarbon structures, dehydrogenation, and cyclization. Catalytic reforming is widely used in the petroleum industry to enhance the quality
+        of gasoline and produce valuable aromatic compounds. The process is essential for improving fuel efficiency and reducing emissions in internal combustion engines.
+        Understanding the mechanisms and conditions of catalytic reforming is crucial for optimizing refinery operations and developing advanced fuels.
+      </>
+    ),
+  },
+  "Dehydrogenation" : {
+    title: "Dehydrogenation",
+    description: (
+      <>
+        Dehydrogenation is a chemical reaction that involves the removal of hydrogen atoms from a molecule, resulting in the formation of a double bond or a new functional group.
+        This process is essential in organic synthesis and plays a crucial role in various industrial applications, including the production of alkenes, aromatics, and biofuels.
+        Dehydrogenation reactions can be catalyzed by metals or enzymes and are often coupled with oxidation processes. Understanding the mechanisms and conditions of dehydrogenation
+        is vital for optimizing reaction yields and selectivity in synthetic chemistry.
+      </>
+    ),
+  },
+  "Aromatization" : {
+    title: "Aromatization",
+    description: (
+      <>
+        Aromatization is a chemical reaction that converts non-aromatic compounds into aromatic compounds by forming a stable cyclic structure with delocalized π-electrons.
+        This process typically involves the removal of hydrogen atoms and the formation of double bonds. Aromatization is crucial in organic synthesis, as it enhances the stability
+        and reactivity of molecules. It is widely used in the production of aromatic hydrocarbons, which are essential building blocks in the synthesis of pharmaceuticals,
+        dyes, and polymers. Understanding the mechanisms and conditions of aromatization is vital for optimizing reaction pathways and product yields.
+      </>
+    ),
+  },
+  "Hydrodealkylation" : {
+    title: "Hydrodealkylation",
+    description: (
+      <>
+        Hydrodealkylation is a chemical reaction that involves the removal of an alkyl group from an aromatic compound through hydrogenation. This process typically occurs
+        under high temperature and pressure conditions, often using metal catalysts. Hydrodealkylation is important in refining processes, as it helps to reduce the size
+        of aromatic compounds and improve the quality of fuels. Understanding the mechanisms and conditions of hydrodealkylation is crucial for optimizing reaction efficiency
+        and selectivity in industrial applications.
+      </>
+    ),
+  },
+  "Aromatic conversion" : {
+    title: "Aromatic conversion",
+    description: (
+      <>
+        Aromatic conversion refers to a series of chemical reactions that transform aromatic compounds into different chemical species, often involving hydrogenation,
+        dehydrogenation, or alkylation processes. This transformation is crucial in the petrochemical industry for producing valuable intermediates and fuels. Aromatic
+        conversion reactions can enhance the reactivity and selectivity of aromatic compounds, making them suitable for various applications in organic synthesis and materials science.
+        Understanding the mechanisms and conditions of aromatic conversion is essential for optimizing reaction pathways and improving product yields.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
