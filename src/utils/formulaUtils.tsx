@@ -12,72 +12,52 @@ const renderExistingTag = (tag: string, key: number): React.ReactNode => {
   return tag;
 };
 
-// Handles a chemical element and its optional count.
-const renderElementPart = (
-  element: string,
-  count: string,
-  key: number
-): React.ReactNode => {
-  return (
-    <React.Fragment key={key}>
-      {element}
-      {count && <sub>{count}</sub>}
-    </React.Fragment>
-  );
-};
-
-// Handles a charge, either rendering it in a <sup> if attached or as plain text.
-const renderChargePart = (
-  charge: string,
-  digits: string,
-  matchIndex: number,
-  text: string,
-  key: number
-): React.ReactNode => {
-  if ((digits && digits.length > 0) || (matchIndex > 0 && text[matchIndex - 1] !== " ")) {
-    return (
-      <sup key={key}>
-        {digits}
-        {charge}
-      </sup>
-    );
-  }
-  return charge;
-};
-
 export const renderFormulas = (text: string): React.ReactNode => {
   if (!text) {
     return null; // Return null if text is null or undefined
   }
-  // This regex will match either an existing <sub>/<sup> tag,
-  // a chemical element with an optional count, or a charge.
-  const regex = /(<(sub|sup)>.*?<\/\2>)|([A-Z][a-z]?)(\d*)|([+-])(\d*)/g;
+
+  const regex = /(<(sub|sup)>.*?<\/\2>)|([A-Z][a-z]{0,2})(\d*)([+-]\d*)?/g;
+  const validFormulaRegex = /^[A-Z][a-z]{0,2}(\d+)?([+-]\d*)?$/; // Matches valid formulas only.
   const elements: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let key = 0;
 
   while ((match = regex.exec(text)) !== null) {
-    // Push any plain text found before the current match.
+    // Add plain text before the current match.
     if (match.index > lastIndex) {
       elements.push(text.slice(lastIndex, match.index));
     }
+
     if (match[1]) {
       // Case 1: Existing <sub> or <sup> tag.
       elements.push(renderExistingTag(match[1], key++));
-    } else if (match[3]) {
-      // Case 2: Element with optional count.
-      elements.push(renderElementPart(match[3], match[4] || "", key++));
-    } else if (match[5]) {
-      // Case 3: Charge symbol (+ or -) with optional digits.
-      elements.push(renderChargePart(match[5], match[6] || "", match.index, text, key++));
+    } else if (match[3] && validFormulaRegex.test(match[0])) {
+      // Case 2: Valid chemical element with optional count and charge.
+      const element = match[3];
+      const count = match[4] || "";
+      const charge = match[5] || "";
+      elements.push(
+        <React.Fragment key={key++}>
+          {element}
+          {count && <sub>{count}</sub>}
+          {charge && <sup>{charge}</sup>}
+        </React.Fragment>
+      );
+    } else {
+      // Treat invalid matches as plain text.
+      elements.push(match[0]);
     }
+
     lastIndex = regex.lastIndex;
   }
-  // Append any remaining text after the last match.
+
+  // Append any remaining plain text after the last match.
   if (lastIndex < text.length) {
     elements.push(text.slice(lastIndex));
   }
+
   return <>{elements}</>;
 };
 

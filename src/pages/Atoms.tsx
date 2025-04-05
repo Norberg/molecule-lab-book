@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import "../App.css";
-import "../styles/Atoms.css"; // Skapa och importera en CSS-fil för Atoms
+import "../styles/Atoms.css";
 
 interface Atom {
   formula: string;
