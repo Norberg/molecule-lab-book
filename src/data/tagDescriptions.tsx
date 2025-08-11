@@ -654,6 +654,156 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  // --- Cativa process related tags (added) ---
+  "Hydrolysis": {
+    title: "Hydrolysis",
+    description: (
+      <>
+        (Alias of <em>Hydrolysis reaction</em>) Bond cleavage by water that distributes H<sup>+</sup> and OH<sup>-</sup> across the fragments. See the Hydrolysis reaction
+        entry for the extended mechanistic, process, and sustainability context relevant to catalytic cycles.
+      </>
+    ),
+  },
+  "Methylation": {
+    title: "Methylation",
+    description: (
+      <>
+        Methylation introduces a methyl group (–CH<sub>3</sub>) into a molecule, modulating polarity, reactivity, or binding properties. In the Cativa process, methanol and
+        hydrogen iodide generate methyl iodide in situ, supplying the active methylating agent for oxidative addition to iridium. Steady methyl iodide formation stabilizes
+        carbonylation throughput, while selectivity and catalyst turnover frequency depend on controlling this precursor supply step.
+      </>
+    ),
+  },
+  "Precursor Formation": {
+    title: "Precursor Formation",
+    description: (
+      <>
+        Precursor formation labels a step that deliberately generates a reactive intermediate required downstream. In Cativa, in situ production of methyl iodide ensures a
+        continuous methyl source for oxidative addition and carbonylation. Effective control moderates concentration swings, reduces side reactions, and enhances overall
+        productivity and catalyst stability.
+      </>
+    ),
+  },
+  "In Situ Generation": {
+    title: "In Situ Generation",
+    description: (
+      <>
+        In situ generation produces a reactive species directly within the reaction medium rather than via external dosing. Continuous formation of methyl iodide in Cativa
+        minimizes handling losses and decomposition, maintains steady-state levels, and improves process safety. It exemplifies process intensification strategies in
+        modern catalytic manufacturing.
+      </>
+    ),
+  },
+  "Oxidative Addition": {
+    title: "Oxidative Addition",
+    description: (
+      <>
+        Oxidative addition is an elementary organometallic step in which a low-valent metal inserts into a σ bond, increasing both its oxidation state and coordination number.
+        This transformation typically generates two new metal–ligand bonds (e.g. M–R and M–X from R–X) and establishes a platform for subsequent steps such as migratory insertion
+        or reductive elimination. Kinetic and thermodynamic control over this often reversible step shapes catalyst speciation, turnover frequency, and selectivity in many
+        cross-coupling and carbonylation processes.
+      </>
+    ),
+  },
+  "Organometallic Chemistry": {
+    title: "Organometallic Chemistry",
+    description: (
+      <>
+        Organometallic chemistry concerns compounds featuring direct metal–carbon bonds that enable activation of otherwise inert substrates (e.g. CO, C–H, C–X).
+        Interplay of oxidation state changes, ligand electronics, and coordination geometry underpins key elementary steps such as oxidative addition, migratory insertion,
+        β-hydride elimination, and reductive elimination. Mastery of these principles drives advances in selective, energy‑efficient catalysis across fine chemical,
+        polymer, and bulk commodity synthesis.
+      </>
+    ),
+  },
+  "Catalyst Activation": {
+    title: "Catalyst Activation",
+    description: (
+      <>
+        Catalyst activation encompasses the transformations that convert a precatalyst or resting state into a catalytically competent species. Examples include ligand
+        dissociation, reduction or oxidation, and initial oxidative addition events. Efficient activation minimizes induction periods, stabilizes productive states, and
+        suppresses formation of off‑cycle or deactivated complexes, directly influencing process start‑up reliability.
+      </>
+    ),
+  },
+  "Carbonylation": {
+    title: "Carbonylation",
+    description: (
+      <>
+        Carbonylation incorporates carbon monoxide into an organic fragment to generate carbonyl-containing intermediates (e.g. acyl, carboxylate, carbonate) or end products.
+        Rate and selectivity depend on CO pressure (or concentration), ligand electronics, catalyst nuclearity, and coordination dynamics. Carbonylation underpins large‑scale
+        manufacture of acids, anhydrides, aldehydes, and fine chemicals, and is a central productivity lever in many homogeneous and heterogeneous catalytic cycles.
+      </>
+    ),
+  },
+  "Migratory Insertion": {
+    title: "Migratory Insertion",
+    description: (
+      <>
+        Migratory insertion is a rearrangement in which a ligated fragment (commonly alkyl or hydride) shifts onto an adjacent coordinated unsaturated ligand (e.g. CO, alkene,
+        alkyne), forming a new σ bond and elongating or transforming the ligand framework. Frequently a rate‑ or selectivity‑determining event, its kinetics are governed by
+        electronic tuning, steric architecture, and ligand lability around the metal center. It enables chain growth, acyl formation, and stereocontrolled carbon–carbon linkage.
+      </>
+    ),
+  },
+  "Rate-Determining Step": {
+    title: "Rate-Determining Step",
+    description: (
+      <>
+        The rate‑determining step is the slowest elementary transformation in a multistep mechanism, imposing an upper limit on overall reaction velocity. Accurate
+        identification (via kinetic profiling, isotope effects, or reaction progress analysis) ensures optimization efforts target the true kinetic bottleneck, enabling
+        rational improvements in throughput, selectivity, and energy efficiency.
+      </>
+    ),
+  },
+  "Reductive Elimination": {
+    title: "Reductive Elimination",
+    description: (
+      <>
+        Reductive elimination couples two ligands on a metal center to form a new σ bond while decreasing the metal's oxidation state and coordination number. It is pivotal
+        for product‑releasing steps in cross‑coupling, hydrofunctionalization, carbonylation, and polymerization catalysis. High fidelity and favorable kinetics prevent
+        accumulation of higher‑valent off‑cycle species and sustain catalytic turnover.
+      </>
+    ),
+  },
+  "Catalyst Regeneration": {
+    title: "Catalyst Regeneration",
+    description: (
+      <>
+        Catalyst regeneration restores the active form after product‑forming steps, enabling repeated turnover cycles. It may involve reductive or oxidative state changes,
+        ligand exchange, or removal of inhibiting byproducts. Efficient regeneration extends catalyst lifetime, reduces precious metal usage, and stabilizes performance metrics
+        during extended operation.
+      </>
+    ),
+  },
+  "Process Efficiency": {
+    title: "Process Efficiency",
+    description: (
+      <>
+        Process efficiency aggregates factors such as yield, turnover frequency, atom economy, energy consumption, and waste generation. Highlighting leverage points allows
+        optimization to focus where marginal gains provide the largest operational and sustainability benefits. Improved efficiency lowers cost, resource intensity, and
+        environmental footprint.
+      </>
+    ),
+  },
+  "Product Formation": {
+    title: "Product Formation",
+    description: (
+      <>
+        Product formation marks the stage where the target molecule or a key isolable intermediate emerges at practical yield. Performance here reflects cumulative upstream
+        control of precursor supply, catalytic cycle efficiency, and reaction environment. Clear delineation of this stage streamlines analytical tracking and quality control.
+      </>
+    ),
+  },
+  "Reagent Recycling": {
+    title: "Reagent Recycling",
+    description: (
+      <>
+        Reagent recycling recovers and reuses a non‑stoichiometric participant to reduce consumable demand, waste, and cost. Effective recycle loops stabilize stoichiometry,
+        improve atom economy, and embody green process design principles across catalytic and stoichiometric transformations.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
