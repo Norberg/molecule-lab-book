@@ -804,6 +804,56 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Photolysis": {
+    title: "Photolysis",
+    description: (
+      <>
+        Photolysis is bond cleavage driven by absorption of photons whose energy exceeds the dissociation threshold of a chromophore. In atmospheric and prebiotic contexts it
+        furnishes highly reactive radical fragments (e.g. H·, OH·) without requiring thermal extremes or molecular oxidants. Selectivity depends on wavelength distribution,
+        absorption cross‑section, and competing relaxation pathways. The released radicals seed initiation steps that launch downstream radical chains and redox reshuffling.
+      </>
+    ),
+  },
+  "Radical initiation": {
+    title: "Radical initiation",
+    description: (
+      <>
+        Radical initiation denotes the elementary event(s) that first generate free radical species from closed‑shell precursors (e.g. photolysis, homolytic bond fission,
+        redox single‑electron transfer). Efficient initiation establishes a baseline radical flux that drives subsequent propagation cycles. In dilute prebiotic gas mixtures
+        it governs overall chain length, product distribution, and the balance between constructive synthesis and unproductive recombination.
+      </>
+    ),
+  },
+  "Hydrogen abstraction": {
+    title: "Hydrogen abstraction",
+    description: (
+      <>
+        Hydrogen abstraction is a bimolecular radical process in which a radical removes an H atom (H·) from a donor substrate, forming a new σ bond and a new radical center.
+        This step translocates radical character onto a different molecular framework, lowering barriers for subsequent functionalization (e.g. O incorporation) and shaping
+        chain propagation kinetics. Selectivity reflects C–H bond dissociation energies, steric accessibility, and polar (electron‑withdrawing / donating) effects.
+      </>
+    ),
+  },
+  "Radical propagation": {
+    title: "Radical propagation",
+    description: (
+      <>
+        Radical propagation encompasses successive radical transformations that regenerate a radical (often of a different identity) while advancing molecular complexity.
+        Propagation steps sustain chain length, amplify small initiation events, and channel reactive intermediates toward productive products instead of termination.
+        Kinetic efficiency and selectivity depend on collision frequency, activation barriers, and competition from recombination or disproportionation pathways.
+      </>
+    ),
+  },
+  "Radical recombination": {
+    title: "Radical recombination",
+    description: (
+      <>
+        Radical recombination (termination) couples two radicals to yield a closed‑shell product, removing reactive species from the medium and capping chain length. It can
+        sequester functionality into stable molecules (e.g. methanol from CH<sub>3</sub>· and OH·) or form diatomics (H<sub>2</sub>) that alter redox and mass balance.
+        The diffusion‑controlled nature of many recombination events makes radical concentration and medium phase critical levers for steering net reaction outcomes.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
