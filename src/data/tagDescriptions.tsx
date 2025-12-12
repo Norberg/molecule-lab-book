@@ -854,6 +854,50 @@ const tagDescriptions: Record<string, TagDescription> = {
       </>
     ),
   },
+  "Calcination": {
+    title: "Calcination",
+    description: (
+      <>
+        Calcination is a high-temperature solid-state decomposition removing volatile components (e.g. CO₂, H₂O) to yield reactive oxides or carbonates.
+        Heat transfer, residence time, and particle size distribution govern conversion efficiency and energy intensity.
+        Off-gas recycling improves carbon utilization and process sustainability.
+        Precise thermal profiling mitigates sintering that would reduce subsequent reactivity.
+      </>
+    ),
+  },
+  "Regeneration": {
+    title: "Regeneration",
+    description: (
+      <>
+        Regeneration restores a cyclic reagent or catalyst to its active form after consumption in intermediate steps.
+        Effective regeneration loops reduce raw material throughput and waste formation.
+        In ammonia-based cycles this step liberates NH₃ while fixing byproduct salts.
+        Its efficiency strongly influences overall process economics and emissions.
+      </>
+    ),
+  },
+  "Loop closure": {
+    title: "Loop closure",
+    description: (
+      <>
+        Loop closure denotes completing a reagent or catalyst cycle so net consumable demand approaches zero.
+        It integrates regeneration, separation, and recycle to stabilize inventories and compositions.
+        Robust closure enhances sustainability metrics and reduces supply chain sensitivity.
+        Monitoring ensures drift or impurity buildup is mitigated.
+      </>
+    ),
+  },
+  "Byproduct formation": {
+    title: "Byproduct formation",
+    description: (
+      <>
+        Byproduct formation tracks generation of non-target species that impact purity, yield, or downstream operations.
+        Early identification enables mitigation strategies (kinetic control, separation optimization, feed conditioning).
+        In cyclic processes certain byproducts (e.g. CaCl₂) become valorization or disposal considerations.
+        Quantitative tracking supports lifecycle and efficiency analyses.
+      </>
+    ),
+  },
 };
 
 export default tagDescriptions;
