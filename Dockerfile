@@ -1,10 +1,10 @@
 # Minimal, secure container to run pnpm tasks in isolation
 # Uses non-root user, read-only filesystem, and controlled network
 
-FROM node:20-alpine AS base
+FROM node:24.12.0-alpine3.23 AS base
 
 # Install pnpm via corepack (preferred)
-RUN corepack enable && corepack prepare pnpm@9.12.3 --activate
+RUN corepack enable && corepack prepare pnpm@10.25.0 --activate
 
 # Create unprivileged user
 RUN adduser -D appuser
@@ -15,11 +15,6 @@ WORKDIR /workspace
 
 # Copy lockfiles first for better caching when installing deps
 COPY --chown=appuser:appuser pnpm-lock.yaml* package.json* pnpm-workspace.yaml* .npmrc* ./
-
-# Optional: set custom registry to whitelist only your registry
-# Build-time override: docker build --build-arg PNPM_REGISTRY=... .
-ARG PNPM_REGISTRY
-ENV NPM_CONFIG_REGISTRY=${PNPM_REGISTRY}
 
 # Install dependencies in a separate layer
 # Use --frozen-lockfile to ensure reproducibility
