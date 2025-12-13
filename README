@@ -1,7 +1,23 @@
-#Installation instructions:
-install nvm https://github.com/nvm-sh/nvm
-nvm install --lts
-npm install
+# Installation instructions
+Install nvm https://github.com/nvm-sh/nvm
+Then install the latest LTS Node and enable pnpm via Corepack:
 
-#Run
-nvm run dev
+```
+nvm install --lts
+nvm use --lts
+corepack enable pnpm
+pnpm install
+```
+
+# Run
+Use pnpm to start the dev server:
+
+```
+pnpm dev
+```
+
+# Test
+
+```
+pnpm test
+```
