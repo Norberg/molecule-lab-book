@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+    image: molecule-lab-book:dev
+    container_name: molecule-lab-book-web
+    working_dir: /workspace
+    user: "1000:1000"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+      VITE_DEV_PORT: "5173"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/workspace
+      - pnpm-store:/home/appuser/.local/share/pnpm
+    command: ["pnpm", "dev", "--host", "0.0.0.0", "--port", "5173"]
+    # Dev-time hardening (adjust as needed)
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges
+
+volumes:
+  pnpm-store:

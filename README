@@ -1,3 +1,22 @@
+Docker (Compose)
+================
+
+Development with hot reload (Vite + pnpm):
+
+```bash
+# Build the dev image with compose
+docker compose build
+# Start the dev server
+docker compose up
+```
+
+Compose details
+---------------
+- Service: `web` defined in [docker-compose.yaml](docker-compose.yaml).
+- Port: `5173` published for Vite + HMR.
+- Volumes: project mounted at `/workspace`; pnpm store cached in named volume `pnpm-store`.
+- Env: polling enabled for reliable file watching in Docker (`CHOKIDAR_USEPOLLING`, `WATCHPACK_POLLING`).
+
 # Installation instructions
 Install nvm https://github.com/nvm-sh/nvm
 Then install the latest LTS Node and enable pnpm via Corepack:
