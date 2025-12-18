@@ -5,7 +5,8 @@ services:
     image: molecule-lab-book:dev
     container_name: molecule-lab-book-web
     working_dir: /workspace
-    user: "1000:1000"
+    # Run as the image's prepared unprivileged user so Corepack/pnpm are activated
+    user: appuser
     environment:
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"

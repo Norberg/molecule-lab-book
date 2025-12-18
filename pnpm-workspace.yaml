@@ -1,8 +1,6 @@
 ignoredBuiltDependencies:
   - esbuild
 
-trustPolicy: no-downgrade
-
 resolutionMode: time-based
 # 14 days
 minimumReleaseAge: 20160

@@ -3,8 +3,8 @@
 
 FROM node:24.12.0-alpine3.23 AS base
 
-# Install pnpm via corepack (preferred)
-RUN corepack enable && corepack prepare pnpm@10.25.0 --activate
+# Enable corepack (pnpm will be prepared after copying package.json)
+RUN corepack enable
 
 # Create unprivileged user
 RUN adduser -D appuser
@@ -15,6 +15,13 @@ WORKDIR /workspace
 
 # Copy lockfiles first for better caching when installing deps
 COPY --chown=appuser:appuser pnpm-lock.yaml* package.json* pnpm-workspace.yaml* .npmrc* ./
+
+# Prepare pnpm matching the version declared in package.json's packageManager
+# Falls back to latest pnpm if packageManager is missing
+RUN set -e; \
+    PKG_MGR_VER=$(node -p "(() => { const fs = require('fs'); const p = JSON.parse(fs.readFileSync('./package.json','utf8')); const v = p.packageManager; if (!v) return ''; const parts = String(v).split('@'); return parts[0]==='pnpm' && parts[1] ? parts[1] : ''; })()"); \
+    if [ -z "$PKG_MGR_VER" ]; then echo "ERROR: package.json must specify 'packageManager': 'pnpm@<version>'" >&2; exit 1; fi; \
+    echo "Activating pnpm@${PKG_MGR_VER}"; corepack prepare pnpm@"$PKG_MGR_VER" --activate
 
 # Install dependencies in a separate layer
 # Use --frozen-lockfile to ensure reproducibility
