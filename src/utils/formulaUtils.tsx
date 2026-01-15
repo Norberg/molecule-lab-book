@@ -1,15 +1,40 @@
 import React from "react";
 
-// Helper to render an existing <sub> or <sup> tag from the input.
-const renderExistingTag = (tag: string, key: number): React.ReactNode => {
-  const tagNameRegex = /<(sub|sup)>(.*?)<\/\1>/i;
-  const result = tagNameRegex.exec(tag);
-  if (result) {
-    const tagName = result[1];
-    const innerContent = result[2];
-    return React.createElement(tagName, { key }, innerContent);
+// Helper to render an existing <sub>, <sup>, <strong>, or <em> tag from the input.
+const renderExistingTag = (tagName: string, innerContent: string, key: number): React.ReactNode => {
+  return React.createElement(tagName.toLowerCase(), { key }, renderRichText(innerContent));
+};
+
+export const renderRichText = (text: string): React.ReactNode => {
+  if (!text) {
+    return null;
   }
-  return tag;
+
+  const regex = /<(strong|em|sub|sup)>(.*?)<\/\1>/gi;
+  const elements: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  while ((match = regex.exec(text)) !== null) {
+    // Add plain text before the current match.
+    if (match.index > lastIndex) {
+      elements.push(text.slice(lastIndex, match.index));
+    }
+
+    const tagName = match[1];
+    const innerContent = match[2];
+    elements.push(renderExistingTag(tagName, innerContent, key++));
+
+    lastIndex = regex.lastIndex;
+  }
+
+  // Append any remaining plain text after the last match.
+  if (lastIndex < text.length) {
+    elements.push(text.slice(lastIndex));
+  }
+
+  return <>{elements}</>;
 };
 
 export const renderFormulas = (text: string): React.ReactNode => {
@@ -32,7 +57,12 @@ export const renderFormulas = (text: string): React.ReactNode => {
 
     if (match[1]) {
       // Case 1: Existing <sub> or <sup> tag.
-      elements.push(renderExistingTag(match[1], key++));
+      const tagMatch = /<(sub|sup)>(.*?)<\/\1>/i.exec(match[1]);
+      if (tagMatch) {
+        elements.push(renderExistingTag(tagMatch[1], tagMatch[2], key++));
+      } else {
+        elements.push(match[1]);
+      }
     } else if (match[3] && validFormulaRegex.test(match[0])) {
       // Case 2: Valid chemical element with optional count and charge.
       const element = match[3];

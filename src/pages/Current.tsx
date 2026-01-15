@@ -4,7 +4,7 @@ import MoleculesList from "../components/MoleculesList";
 import { useState, useEffect, useRef } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import "../styles/Current.css";
-import tagDescriptions, { TagDescription } from "../data/tagDescriptions";
+import { fetchTagDescriptions, TagDescription } from "../data/tagDescriptions";
 import Popup from "../components/Popup";
 import { renderFormulas, renderReaction } from "../utils/formulaUtils";
 
@@ -31,6 +31,7 @@ interface ReactionHintItemProps {
   isRevealed: boolean;
   description: string;
   toggleReveal: (index: number) => void;
+  tagDescriptions: Record<string, TagDescription> | undefined;
 }
 
 const ReactionHintItem = ({
@@ -40,6 +41,7 @@ const ReactionHintItem = ({
   isRevealed,
   description,
   toggleReveal,
+  tagDescriptions,
 }: ReactionHintItemProps) => {
   const isDiscovered = Boolean(foundReactionLog);
   const [animateOverlay, setAnimateOverlay] = useState(false);
@@ -64,7 +66,7 @@ const ReactionHintItem = ({
     const buttonRect = event.currentTarget.getBoundingClientRect();
     setPopupAnchor(buttonRect);
     setPopupContent(
-      tagDescriptions[tag] || { title: tag, description: <>No description available.</> }
+      (tagDescriptions && tagDescriptions[tag]) || { title: tag, description: "No description available." }
     );
   };
 
@@ -166,12 +168,18 @@ const Current = () => {
     queryFn: fetchMolecules,
   });
 
+  const { data: tagDescriptionsData, error: tagDescriptionsError, isLoading: tagDescriptionsLoading } = useQuery<Record<string, TagDescription>>({
+    queryKey: ["tagDescriptions"],
+    queryFn: fetchTagDescriptions,
+  });
+
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
 
-  if (levelLoading || moleculesLoading) return <p>Loading...</p>;
+  if (levelLoading || moleculesLoading || tagDescriptionsLoading) return <p>Loading...</p>;
   if (levelError) return <p>Error when fetching current level.</p>;
   if (moleculesError) return <p>Error when fetching molecules.</p>;
-  if (!levelData || !moleculesData) return <p>No data available</p>;
+  if (tagDescriptionsError) return <p>Error when fetching tag descriptions.</p>;
+  if (!levelData || !moleculesData || !tagDescriptionsData) return <p>No data available</p>;
 
   const reactingMolecules = moleculesData.filter((molecule) =>
     levelData.reactingElements.includes(molecule.formula)
@@ -230,6 +238,7 @@ const Current = () => {
                   isRevealed={isRevealed}
                   description={description}
                   toggleReveal={toggleReveal}
+                  tagDescriptions={tagDescriptionsData}
                 />
               );
             })}
