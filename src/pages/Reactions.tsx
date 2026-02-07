@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "../App.css";
 import "../styles/Reactions.css";
 import { renderFormulas, renderReaction } from "../utils/formulaUtils";
 import { fetchTagDescriptions, TagDescription } from "../data/tagDescriptions";
 import Popup from "../components/Popup";
+import { FaSearch } from "react-icons/fa";
 
 interface PlayerReaction {
   reactants: string[];
@@ -80,6 +81,8 @@ const ReactionCard = ({ reaction, tagDescriptions }: ReactionCardProps) => {
 };
 
 const Reactions = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const { data: reactionsData, error: reactionsError, isLoading: reactionsLoading } = useQuery<PlayerReaction[]>({
     queryKey: ["playerReactions"],
     queryFn: fetchReactions,
@@ -89,6 +92,19 @@ const Reactions = () => {
     queryKey: ["tagDescriptions"],
     queryFn: fetchTagDescriptions,
   });
+
+  const filteredReactions = useMemo(() => {
+    if (!reactionsData) return [];
+    if (!searchQuery) return reactionsData;
+
+    const query = searchQuery.toLowerCase();
+    return reactionsData.filter((r) => {
+      const inReactants = r.reactants.some((mol) => mol.toLowerCase().includes(query));
+      const inProducts = r.products.some((mol) => mol.toLowerCase().includes(query));
+      const inTags = query.length >= 4 && r.tags.some((tag) => tag.toLowerCase().includes(query));
+      return inReactants || inProducts || inTags;
+    });
+  }, [reactionsData, searchQuery]);
 
   if (reactionsLoading) return <p>Loading...</p>;
   if (reactionsError) return <p>Error when fetching reactions.</p>;
@@ -102,14 +118,31 @@ const Reactions = () => {
   return (
     <div className="reactions-container">
       <h2>Discovered reactions</h2>
+
+      <div className="reactions-controls">
+        <div className="search-wrapper">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search by molecule or tag..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
+      </div>
+
       <div className="reactions-list">
-        {reactionsData.map((reaction, index) => (
+        {filteredReactions.map((reaction, index) => (
           <ReactionCard
             key={index}
             reaction={reaction}
             tagDescriptions={tagDescriptionsData}
           />
         ))}
+        {filteredReactions.length === 0 && reactionsData.length > 0 && (
+          <p className="no-results">No reactions match your search.</p>
+        )}
       </div>
     </div>
   );
