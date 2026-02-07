@@ -12,6 +12,7 @@ interface Molecule {
     DescriptionAttribution?: string;
     DescriptionLicense?: string;
   };
+  createdCount?: number;
 }
 
 const fetchMolecules = async (): Promise<Molecule[]> => {

@@ -1,0 +1,113 @@
+.reactions-container {
+    padding: 20px;
+}
+
+.reactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* Increased gap for larger vertical cards */
+    margin-top: 20px;
+}
+
+.reaction-card {
+    display: flex;
+    flex-direction: column;
+    /* Vertical stacked layout */
+    gap: 20px;
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+    max-width: 1000px;
+    /* Optional: cap the card width for readability */
+    margin: 0 auto;
+    /* Center cards */
+    width: 100%;
+    position: relative;
+    /* For absolute positioning of badge */
+}
+
+.reaction-card-image {
+    width: auto;
+    /* Show in natural scale */
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    display: block;
+    align-self: flex-start;
+    /* Left align and prevent stretching */
+}
+
+.reaction-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reaction-card-content h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.reaction-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-button {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #495057;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tag-button:hover {
+    background-color: #dee2e6;
+    border-color: #adb5bd;
+}
+
+.reaction-count-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    /* Right align */
+    background-color: rgba(0, 123, 255, 0.9);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.reaction-formulas {
+    font-family: monospace;
+    font-size: 1.2rem;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 5px solid #007bff;
+}
+
+.reaction-description {
+    line-height: 1.6;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    .reaction-card {
+        padding: 15px;
+    }
+}

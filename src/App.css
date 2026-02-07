@@ -93,7 +93,7 @@ body {
   margin-top: 20px;
 }
 
-.molecule-table th, 
+.molecule-table th,
 .molecule-table td {
   border: 1px solid #ddd;
   padding: 8px;
@@ -111,4 +111,26 @@ body {
 
 .molecule-table tr:hover {
   background-color: #ddd;
+}
+
+/* Shared Hover Image Styles (Primarily for MoleculesList) */
+.hovered-image-container {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate(20px, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+
+.hovered-image {
+  max-width: 400px;
+  /* Reduced to sensible size for molecule previews */
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  display: block;
 }

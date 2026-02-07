@@ -146,9 +146,16 @@ interface LevelData {
   reactingElements: string[];
 }
 
-const fetchCurrentLevel = async (): Promise<LevelData> => {
-  const { data } = await axios.get("http://localhost:8000/level/current");
-  return data;
+const fetchCurrentLevel = async (): Promise<LevelData | null> => {
+  try {
+    const { data } = await axios.get("http://localhost:8000/level/current");
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      return null;
+    }
+    throw error;
+  }
 };
 
 const fetchMolecules = async (): Promise<Molecule[]> => {
@@ -157,7 +164,7 @@ const fetchMolecules = async (): Promise<Molecule[]> => {
 };
 
 const Current = () => {
-  const { data: levelData, error: levelError, isLoading: levelLoading } = useQuery<LevelData>({
+  const { data: levelData, error: levelError, isLoading: levelLoading } = useQuery<LevelData | null>({
     queryKey: ["currentLevel"],
     queryFn: fetchCurrentLevel,
     refetchInterval: 500, // Refetch every 0.5 seconds
@@ -179,7 +186,18 @@ const Current = () => {
   if (levelError) return <p>Error when fetching current level.</p>;
   if (moleculesError) return <p>Error when fetching molecules.</p>;
   if (tagDescriptionsError) return <p>Error when fetching tag descriptions.</p>;
-  if (!levelData || !moleculesData || !tagDescriptionsData) return <p>No data available</p>;
+  if (!moleculesData || !tagDescriptionsData) return <p>No data available</p>;
+
+  if (!levelData) {
+    return (
+      <div className="current-container">
+        <h2>Current Level</h2>
+        <div className="no-level-active">
+          <p>No level is currently active. Select a level from the main menu to begin.</p>
+        </div>
+      </div>
+    );
+  }
 
   const reactingMolecules = moleculesData.filter((molecule) =>
     levelData.reactingElements.includes(molecule.formula)
