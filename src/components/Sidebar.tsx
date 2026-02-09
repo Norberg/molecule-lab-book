@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaAtom, FaFlask, FaCog, FaChartBar, FaQuestionCircle, FaBars, FaPuzzlePiece } from 'react-icons/fa';
+import { FaAtom, FaFlask, FaCog, FaChartBar, FaQuestionCircle, FaBars, FaPuzzlePiece, FaTrophy } from 'react-icons/fa';
 import '../App.css';
 
 const menuItems = [
-  { name : 'Current Level', icon: <FaPuzzlePiece />, path: '/current' },
+  { name: 'Current Level', icon: <FaPuzzlePiece />, path: '/current' },
   { name: 'Atoms', icon: <FaAtom />, path: '/atoms' },
   { name: 'Molecules', icon: <FaFlask />, path: '/molecules' },
   { name: 'Reactions', icon: <FaCog />, path: '/reactions' },
   { name: 'Statistik', icon: <FaChartBar />, path: '/statistics' },
+  { name: 'Achievements', icon: <FaTrophy />, path: '/achievements' },
   { name: 'Hjälp', icon: <FaQuestionCircle />, path: '/help' }
 ];
 

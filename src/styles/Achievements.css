@@ -1,0 +1,124 @@
+.achievements-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.achievement-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.achievement-info h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.achievement-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.badges-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    filter: grayscale(1) opacity(0.2);
+}
+
+.badge-icon.unlocked {
+    filter: grayscale(0) opacity(1);
+    cursor: help;
+}
+
+.badge-icon.unlocked:hover {
+    transform: scale(1.1);
+}
+
+.achievement-progress {
+    margin-top: auto;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar-bg {
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #34ce57);
+    transition: width 0.5s ease-out;
+}
+
+.next-threshold {
+    font-size: 0.8rem;
+    color: #adb5bd;
+    margin-top: 0.25rem;
+    text-align: right;
+}
+
+.achievement-level-tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.level-bronze {
+    background: #cd7f32;
+    color: #fff;
+}
+
+.level-silver {
+    background: #c0c0c0;
+    color: #333;
+}
+
+.level-gold {
+    background: #ffd700;
+    color: #333;
+}

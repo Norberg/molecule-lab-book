@@ -5,6 +5,7 @@ import Current from './pages/Current';
 import Molecules from './pages/Molecules';
 import Reactions from './pages/Reactions';
 import Statistics from './pages/Statistics';
+import Achievements from './pages/Achievements';
 import Help from './pages/Help';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/molecules" element={<Molecules />} />
             <Route path="/reactions" element={<Reactions />} />
             <Route path="/statistics" element={<Statistics />} />
+            <Route path="/achievements" element={<Achievements />} />
             <Route path="/help" element={<Help />} />
           </Routes>
         </div>
