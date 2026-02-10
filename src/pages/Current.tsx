@@ -182,6 +182,12 @@ const Current = () => {
 
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
 
+  const levelIdentity = levelData ? `${levelData.hint}-${levelData.victoryCondition.join(",")}` : null;
+
+  useEffect(() => {
+    setRevealed({});
+  }, [levelIdentity]);
+
   if (levelLoading || moleculesLoading || tagDescriptionsLoading) return <p>Loading...</p>;
   if (levelError) return <p>Error when fetching current level.</p>;
   if (moleculesError) return <p>Error when fetching molecules.</p>;
