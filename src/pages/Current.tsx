@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import MoleculesList from "../components/MoleculesList";
 import { useState, useEffect, useRef } from "react";
 import { FaCheckCircle } from "react-icons/fa";
@@ -8,21 +7,15 @@ import { fetchTagDescriptions, TagDescription } from "../data/tagDescriptions";
 import Popup from "../components/Popup";
 import { renderFormulas, renderReaction } from "../utils/formulaUtils";
 
-interface ReactionHint {
-  reactants: string[];
-  products: string[];
-  reactionPath: string;
-  reactionHintPath: string;
-}
-
-interface ReactionLog {
-  reactants: string[];
-  products: string[];
-  description: string;
-  tags: string[];
-  reactionPath: string;
-  reactionHintPath: string;
-}
+import {
+  LevelData,
+  ReactionHint,
+  ReactionLog,
+  Molecule,
+  fetchCurrentLevel,
+  fetchMolecules,
+  usePenaltyMutation
+} from "../data/levelData";
 
 interface ReactionHintItemProps {
   item: ReactionHint;
@@ -126,42 +119,7 @@ const ReactionHintItem = ({
   );
 };
 
-interface Molecule {
-  formula: string;
-  property: {
-    Name?: string;
-    Description?: string;
-    DescriptionAttribution?: string;
-    DescriptionLicense?: string;
-  };
-}
 
-interface LevelData {
-  points: number;
-  time: number;
-  victoryCondition: string[];
-  hint: string;
-  reactionHint: ReactionHint[];
-  reactionLog: ReactionLog[];
-  reactingElements: string[];
-}
-
-const fetchCurrentLevel = async (): Promise<LevelData | null> => {
-  try {
-    const { data } = await axios.get("http://localhost:8000/level/current");
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 404) {
-      return null;
-    }
-    throw error;
-  }
-};
-
-const fetchMolecules = async (): Promise<Molecule[]> => {
-  const { data } = await axios.get("http://localhost:8000/molecule");
-  return data;
-};
 
 const Current = () => {
   const { data: levelData, error: levelError, isLoading: levelLoading } = useQuery<LevelData | null>({
@@ -180,12 +138,16 @@ const Current = () => {
     queryFn: fetchTagDescriptions,
   });
 
+  const penaltyMutation = usePenaltyMutation();
+
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const [penalized, setPenalized] = useState<Record<number, boolean>>({});
 
   const levelIdentity = levelData ? `${levelData.hint}-${levelData.victoryCondition.join(",")}` : null;
 
   useEffect(() => {
     setRevealed({});
+    setPenalized({});
   }, [levelIdentity]);
 
   if (levelLoading || moleculesLoading || tagDescriptionsLoading) return <p>Loading...</p>;
@@ -225,7 +187,16 @@ const Current = () => {
       return molecule;
     });
 
-  const toggleReveal = (index: number) => {
+  const toggleReveal = async (index: number) => {
+    if (!revealed[index] && !penalized[index]) {
+      try {
+        await penaltyMutation.mutateAsync();
+        setPenalized((prev) => ({ ...prev, [index]: true }));
+      } catch (error) {
+        console.error("Failed to register hint usage:", error);
+      }
+    }
+
     setRevealed((prev) => ({
       ...prev,
       [index]: !prev[index],
