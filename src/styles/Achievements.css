@@ -61,7 +61,6 @@
 
 .badge-icon.unlocked {
     filter: grayscale(0) opacity(1);
-    cursor: help;
 }
 
 .badge-icon.unlocked:hover {
